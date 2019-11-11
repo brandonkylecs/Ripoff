@@ -9,7 +9,11 @@ import java.util.ArrayList;
 public class ComputerOpponent extends Contender {
 
     private int advantagePoints;
-
+    /**
+     * This is the constructor method that takes the Deck that the AI opponent will use as a parameter.
+     * 
+     * @param _usedDeck 
+     */
     public ComputerOpponent(Deck _usedDeck) {
         this.setDeck(_usedDeck);
         System.out.println("ComputerOpponent module loaded.");
