@@ -14,6 +14,7 @@ public class RipoffEvent extends EventObject {
     public RipoffEvent(Object source, RipoffMessage _message) {
         super(source);
         this.message = _message;
+        System.out.println("harro");
     }
 
     public RipoffMessage getMessage() {
