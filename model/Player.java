@@ -30,6 +30,13 @@ public class Player extends RipoffBase {
     public void sendMessage() {
         System.out.println("Sending message to player: You suck.");
     }
+    
+    /*
+    * Called when the player wants to create a profile.
+    */
+    public void createProfile(){
+        System.out.println("Creating profile.");
+    }
 
 
     @Override
@@ -40,6 +47,9 @@ public class Player extends RipoffBase {
                 break;
             case RipoffMessage.SEND_MEMES:
                 this.sendMessage();
+                break;
+            case RipoffMessage.CREATE_PROFILE:
+                this.createProfile();
                 break;
             default:
                 System.out.println("I don\'t know what you want me to do: " + event.getMessage().getCode());

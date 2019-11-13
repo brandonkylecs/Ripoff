@@ -121,11 +121,13 @@ public final class RipoffGUI extends RipoffBase {
     * a scene to be added to the stage.
     */
     private Scene buildPlayerPanel(){
+        Label lblText = new Label("Hello");
         Button btn1 = this.addButton("See my Deck", new RipoffMessage(RipoffMessage.SEE_DECK));
         Button btn2 = this.addButton("Send Memes to Player", new RipoffMessage(RipoffMessage.SEND_MEMES));
         Button createProfile = this.addButton("Create Profile", new RipoffMessage(RipoffMessage.CREATE_PROFILE));
         Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         VBox vbox = this.addVBox("Would you like to play a game?");
+        vbox.getChildren().add(lblText);
         vbox.getChildren().add(btn1);
         vbox.getChildren().add(btn2);
         vbox.getChildren().add(createProfile);

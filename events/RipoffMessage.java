@@ -20,17 +20,17 @@ public class RipoffMessage {
     /*
     * Player Messages.
     */
-    public static final int SEE_DECK = 1;
-    public static final int SEND_MEMES = 2;
-    public static final int CREATE_PROFILE = 3;
+    public static final int SEE_DECK = 10;
+    public static final int SEND_MEMES = 20;
+    public static final int CREATE_PROFILE = 30;
     
     /*
     * Game Messages.
     */
-    public static final int HOW_TO_PLAY = 1;
-    public static final int PLAY_AGAINST_HOOMANS = 2;
-    public static final int PLAY_AGAINST_AI = 3;
-    public static final int PLAYER_WON = 4;
+    public static final int HOW_TO_PLAY = 100;
+    public static final int PLAY_AGAINST_HOOMANS = 200;
+    public static final int PLAY_AGAINST_AI = 300;
+    public static final int PLAYER_WON = 400;
     
     private final int _thismessage;
     
