@@ -144,15 +144,26 @@ public final class RipoffGUI extends RipoffBase {
         TextField tfUsername = new TextField();
         Label lblFirstname = new Label("First Name");
         TextField tfFirstname = new TextField();
+        Label lblPassword = new Label("Enter your password.  No guarentee we save it in any smart way whatsoever.");
+        TextField tfPassword = new TextField();
+        Label lblSSN = new Label("Enter your social security number for a chance to win $5!");
+        TextField tfSSN = new TextField();
         Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL
+        ));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
         vbox.getChildren().add(lblUsername);
         vbox.getChildren().add(tfUsername);
         vbox.getChildren().add(lblFirstname);
         vbox.getChildren().add(tfFirstname);
+        vbox.getChildren().add(lblPassword);
+        vbox.getChildren().add(tfPassword);
+        vbox.getChildren().add(lblSSN);
+        vbox.getChildren().add(tfSSN);
+        vbox.getChildren().add(btnRegister);
         vbox.getChildren().add(btnExit);
         // Create the scene and return.
-        Scene scene = new Scene(vbox, 400, 200);
+        Scene scene = new Scene(vbox, 500, 350);
         return scene;
     }
 
