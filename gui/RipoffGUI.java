@@ -1,5 +1,5 @@
 /*
- * The GUI interface for the Simple Ripoff example.
+ * The GUI interface for Ripoff Game.
  */
 package gui;
 
@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -20,7 +22,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author tnwallsc and heavily inspired by Ike Quigley
+ * @author tnwallsc and heavily insipired by Ike Quigley
  */
 public final class RipoffGUI extends RipoffBase {
 
@@ -65,22 +67,33 @@ public final class RipoffGUI extends RipoffBase {
         this.primaryStage.setScene(playerScene);
         this.primaryStage.show();
     }
+    
+    /*
+    * Loads the registration panel.
+    */
+    public void loadRegisterPanel(){
+        System.out.println("Loading Registration Panel");
+        Scene registerScene = this.buildRegisterPanel();
+        this.primaryStage.setTitle("Registration");
+        this.primaryStage.setScene(registerScene);
+        this.primaryStage.show();
+    }
 
    /*
     * Helper function for building the main panel. Creates two buttons and returns
     * a scene to be added to the stage.
     */
     private Scene buildMainPanel() {
-        Button btnTransaction = this.addButton("Game", new RipoffMessage(RipoffMessage.GAME_PANEL));
-        Button btnInventory = this.addButton("Player", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+        Button btnGame = this.addButton("Game", new RipoffMessage(RipoffMessage.GAME_PANEL));
+        Button btnPlayer = this.addButton("Player", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Ripoff: The Card Game");
         Text text = new Text("\"Wow\" - Owen Wilson");
         text.setFill(Color.MAGENTA);
-        vbox.getChildren().add(btnTransaction);
-        vbox.getChildren().add(btnInventory);
+        vbox.getChildren().add(btnGame);
+        vbox.getChildren().add(btnPlayer);
         vbox.getChildren().add(text);
         // Create the scene and return.
-        Scene scene = new Scene(vbox, 800, 600);
+        Scene scene = new Scene(vbox, 400, 200);
         return scene;
     }
 
@@ -99,47 +112,72 @@ public final class RipoffGUI extends RipoffBase {
         vbox.getChildren().add(btn3);
         vbox.getChildren().add(btnExit);
         // Create the scene and return.
-        Scene scene = new Scene(vbox, 800, 600);
+        Scene scene = new Scene(vbox, 400, 200);
         return scene;
     }
 
    /*
-    * Helper funciton for building the inventory panel. Creates the buttons and returns
+    * Helper funciton for building the player panel. Creates the buttons and returns
     * a scene to be added to the stage.
     */
     private Scene buildPlayerPanel(){
+        Label lblText = new Label("Hello");
         Button btn1 = this.addButton("See my Deck", new RipoffMessage(RipoffMessage.SEE_DECK));
         Button btn2 = this.addButton("Send Memes to Player", new RipoffMessage(RipoffMessage.SEND_MEMES));
+        Button createProfile = this.addButton("Create Profile", new RipoffMessage(RipoffMessage.CREATE_PROFILE));
         Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
-        VBox vbox = this.addVBox("Look yourself in the mirror");
+        VBox vbox = this.addVBox("Would you like to play a game?");
+        vbox.getChildren().add(lblText);
         vbox.getChildren().add(btn1);
         vbox.getChildren().add(btn2);
+        vbox.getChildren().add(createProfile);
         vbox.getChildren().add(btnExit);
         // Create the scene and return.
-        Scene scene = new Scene(vbox, 800, 600);
+        Scene scene = new Scene(vbox, 400, 200);
+        return scene;
+    }
+    
+    /*
+    * Helper funciton for building the register panel. Creates the buttons and returns
+    * a scene to be added to the stage.
+    */
+    private Scene buildRegisterPanel(){
+        Label lblUsername = new Label("Username");
+        TextField tfUsername = new TextField();
+        Label lblFirstname = new Label("First Name");
+        TextField tfFirstname = new TextField();
+        Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
+        vbox.getChildren().add(lblUsername);
+        vbox.getChildren().add(tfUsername);
+        vbox.getChildren().add(lblFirstname);
+        vbox.getChildren().add(tfFirstname);
+        vbox.getChildren().add(btnExit);
+        // Create the scene and return.
+        Scene scene = new Scene(vbox, 400, 200);
         return scene;
     }
 
    /*
     * Builds a button given a title and a message to throw for its event.
-    * @param String title the label text for the button
-    * @param RegisterMessage throwMessage the message to send with the event.
+    * @param String _title the label text for the button
+    * @param RipoffMessage _throwMessage the message to send with the event.
     */
-    private Button addButton(String title, final RipoffMessage throwMessage) {
+    private Button addButton(String _title, final RipoffMessage _throwMessage) {
         Button btn = new Button();
-        btn.setText(title);
+        btn.setText(_title);
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 // Fire a custom event.
-                RipoffEvent ripEvent = new RipoffEvent(this, throwMessage);
+                RipoffEvent ripEvent = new RipoffEvent(this, _throwMessage);
                 fireEvent(ripEvent);
             }
         });
         return btn;
     }
-
-   /*
+    
+    /*
     * Creates a vertical box with a header.
     * @param String header the header to add to the top of the VBox.
     */
