@@ -1,5 +1,5 @@
 /*
- * The Register object for handling player options.
+ * The Register object for handling registration.
  */
 package model;
 

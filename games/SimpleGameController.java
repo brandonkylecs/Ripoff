@@ -109,7 +109,7 @@ public class SimpleGameController implements ListenerInterface {
                 this.mainPanel();
                 break;
             default:
-                System.out.println("Ignoring Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
+                System.out.println("Ignoring Simple Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
                 break;
         }
     }
