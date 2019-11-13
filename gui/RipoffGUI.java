@@ -78,6 +78,17 @@ public final class RipoffGUI extends RipoffBase {
         this.primaryStage.setScene(registerScene);
         this.primaryStage.show();
     }
+    
+    /*
+    * Loads the market panel.
+    */
+    public void loadMarketPanel(){
+        System.out.println("Loading Market Panel");
+        Scene marketScene = this.buildMarketPanel();
+        this.primaryStage.setTitle("Ripoff Market");
+        this.primaryStage.setScene(marketScene);
+        this.primaryStage.show();
+    }
 
    /*
     * Helper function for building the main panel. Creates two buttons and returns
@@ -86,11 +97,13 @@ public final class RipoffGUI extends RipoffBase {
     private Scene buildMainPanel() {
         Button btnGame = this.addButton("Game", new RipoffMessage(RipoffMessage.GAME_PANEL));
         Button btnPlayer = this.addButton("Player", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+        Button btnMarket = this.addButton("Marketplace", new RipoffMessage(RipoffMessage.MARKET_PANEL));
         VBox vbox = this.addVBox("Ripoff: The Card Game");
         Text text = new Text("\"Wow\" - Owen Wilson");
         text.setFill(Color.MAGENTA);
         vbox.getChildren().add(btnGame);
         vbox.getChildren().add(btnPlayer);
+        vbox.getChildren().add(btnMarket);
         vbox.getChildren().add(text);
         // Create the scene and return.
         Scene scene = new Scene(vbox, 400, 200);
@@ -163,6 +176,21 @@ public final class RipoffGUI extends RipoffBase {
         vbox.getChildren().add(btnRegister);
         vbox.getChildren().add(btnExit);
         // Create the scene and return.
+        Scene scene = new Scene(vbox, 500, 350);
+        return scene;
+    }
+    
+   /*
+    * Helper function that builds the marketplace panel.
+    */
+    private Scene buildMarketPanel(){
+        Label lblInfo = new Label("Thanks for visiting the Ripoff market!\n"
+                + "We only charge 50% extra convinience fee!  Don't know what that is?\n"
+                + "Ask your parents, since you're probably 14!");
+        Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        VBox vbox = this.addVBox("\"Totally not a Ripoff\" Market!");
+        vbox.getChildren().add(lblInfo);
+        vbox.getChildren().add(btnExit);
         Scene scene = new Scene(vbox, 500, 350);
         return scene;
     }

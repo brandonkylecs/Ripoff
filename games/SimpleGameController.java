@@ -7,6 +7,7 @@ package games;
 import model.RipoffBase;
 import model.Game;
 import model.Register;
+import model.Market;
 import gui.RipoffGUI;
 import javafx.stage.Stage;
 import events.RipoffEvent;
@@ -64,6 +65,17 @@ public class SimpleGameController implements ListenerInterface {
         // Register Active Module as listener.
         this.ripoffPanelListener(new Player());
     }
+    /*
+    * Loads the market panel to the main screen and registers the Market
+    * object.
+    */
+    
+    private void marketPanel(){
+        // Load the GUI
+        this.gui.loadMarketPanel();
+        // Register Active Module as listener.
+        this.ripoffPanelListener(new Market());
+    }
     
     /*
     * Loads the register panel to the main screen and registers the Register
@@ -103,6 +115,10 @@ public class SimpleGameController implements ListenerInterface {
             case RipoffMessage.REGISTER_PANEL:
                 System.out.println("Controller Responding to Register Panel Event.");
                 this.registerPanel();
+                break;
+            case RipoffMessage.MARKET_PANEL:
+                System.out.println("Controller Responding to Market Panel Event.");
+                this.marketPanel();
                 break;
             case RipoffMessage.EXIT_PANEL:
                 System.out.println("Controller Responding to Main Menu Panel Event.");
