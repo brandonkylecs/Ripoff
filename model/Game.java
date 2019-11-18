@@ -15,7 +15,7 @@ public class Game extends RipoffBase {
     public Game() {
         System.out.println("Game Module Loaded");
     }
-    
+
     /*
     * Called when the player wants to learn how to play.
     */
