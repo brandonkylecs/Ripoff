@@ -2,7 +2,7 @@ package model;
 
 /**
  *
- * @author Brandon Kyle Last Updated 10/06/2019
+ * @author Brandon Kyle Last Updated 11/18/2019
  */
 import java.util.ArrayList;
 
@@ -76,15 +76,15 @@ public class ComputerOpponent extends Contender {
      * @return
      */
     public Card decideCard(ArrayList<Card> _selectedCards) {
-        int state = decideAIState();
+        String state = decideAIState();
         int indexOfDrawnCard = 0;
         switch (state) {
-            case -1:    indexOfDrawnCard = indexProtectiveCard(_selectedCards);
-                        break;
-            case 0:     indexOfDrawnCard = (int) (Math.random() * _selectedCards.size());
-                        break;
-            case 1:     indexOfDrawnCard = indexAggressiveCard(_selectedCards);
-                        break;
+            case "Protective":  indexOfDrawnCard = indexProtectiveCard(_selectedCards);
+                                break;
+            case "Neutral":     indexOfDrawnCard = (int) (Math.random() * _selectedCards.size());
+                                break;
+            case "Aggressive":  indexOfDrawnCard = indexAggressiveCard(_selectedCards);
+                                break;
         }
         System.out.println("The AI has drawn card " + _selectedCards.get(indexOfDrawnCard) + "!");
         return _selectedCards.remove(indexOfDrawnCard);
@@ -97,19 +97,19 @@ public class ComputerOpponent extends Contender {
      *
      * @return
      */
-    private int decideAIState() {
+    private String decideAIState() {
         int state;
         state = (int) (Math.random() * this.advantagePoints);
         if(state < 0) {
             System.out.println("The AI is aggressive.");
-            return 1;
+            return "Aggressive";
         }
         if(state > 0) {
             System.out.println("The AI is protective.");
-            return -1;
+            return "Protective";
         }
         System.out.println("The AI is neutral.");
-        return 0;
+        return "Neutral";
     }
 
     /**
