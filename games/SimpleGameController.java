@@ -72,14 +72,14 @@ public class SimpleGameController implements ListenerInterface {
     * Loads the market panel to the main screen and registers the Market
     * object.
     */
-    
+
     private void marketPanel(){
         // Load the GUI
         this.gui.loadMarketPanel();
         // Register Active Module as listener.
         this.ripoffPanelListener(new Market());
     }
-    
+
     /*
     * Loads the register panel to the main screen and registers the Register
     * object.
