@@ -24,6 +24,7 @@ public class RipoffMessage {
     public static final int SEE_DECK = 10;
     public static final int SEND_MEMES = 20;
     public static final int CREATE_PROFILE = 30;
+    public static final int CHECK_LOGIN = 31;
     
     /*
     * Game Messages.

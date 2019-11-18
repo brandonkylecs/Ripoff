@@ -136,7 +136,7 @@ public final class RipoffGUI extends RipoffBase {
     private Scene buildPlayerPanel(){
         Button btn1 = this.addButton("See my Deck", new RipoffMessage(RipoffMessage.SEE_DECK));
         Button btn2 = this.addButton("Send Memes to Player", new RipoffMessage(RipoffMessage.SEND_MEMES));
-        Button createProfile = this.addButton("Create Profile", new RipoffMessage(RipoffMessage.REGISTER_PANEL));
+        Button createProfile = this.addButton("Create Profile/Sign In", new RipoffMessage(RipoffMessage.REGISTER_PANEL));
         Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         VBox vbox = this.addVBox("Would you like to play a game?");
         vbox.getChildren().add(btn1);
@@ -164,6 +164,7 @@ public final class RipoffGUI extends RipoffBase {
         Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL
         ));
+        Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
         vbox.getChildren().add(lblUsername);
         vbox.getChildren().add(tfUsername);
@@ -174,9 +175,10 @@ public final class RipoffGUI extends RipoffBase {
         vbox.getChildren().add(lblSSN);
         vbox.getChildren().add(tfSSN);
         vbox.getChildren().add(btnRegister);
+        vbox.getChildren().add(btnSignIn);
         vbox.getChildren().add(btnExit);
         // Create the scene and return.
-        Scene scene = new Scene(vbox, 500, 350);
+        Scene scene = new Scene(vbox, 500, 400);
         return scene;
     }
     
