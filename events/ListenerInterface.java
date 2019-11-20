@@ -1,8 +1,8 @@
 package events;
 
 /**
- * A simple ripoff listener interface.
- * @author tnwallsc but mostly Ike Quigley
+ * A simple register listener interface.
+ * @author Ike Quigley and a slight adjustment by Tyler Wallschleger
  */
 public interface ListenerInterface {
 
