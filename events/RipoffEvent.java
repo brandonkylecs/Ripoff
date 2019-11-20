@@ -1,8 +1,8 @@
 package events;
 
 /**
- * A custom event class for handling events for the Simple Ripoff system.
- * @author tnwallsc and Ike Quigley might have helped a bit.
+ * A custom event class for handling events for the Ripoff game.
+ * @author tnwallsc
  */
 import java.util.EventObject;
 

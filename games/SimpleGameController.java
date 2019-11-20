@@ -4,8 +4,12 @@
  */
 package games;
 
+import java.util.*;
 import model.RipoffBase;
 import model.Game;
+import model.Register;
+import model.Market;
+import db.MySQLConnector;
 import gui.RipoffGUI;
 import javafx.stage.Stage;
 import events.RipoffEvent;
@@ -20,6 +24,7 @@ public class SimpleGameController implements ListenerInterface {
 
     // Add reference to all modules.
     protected RipoffGUI gui;
+    protected MySQLConnector sql;
     protected RipoffBase activeModule = null;
 
     SimpleGameController(Stage primaryStage) {
@@ -50,7 +55,7 @@ public class SimpleGameController implements ListenerInterface {
         // Load the game GUI.
         this.gui.loadGamePanel();
         // Register Active Module as listener.
-        this.registerPanelListener(new Game());
+        this.ripoffPanelListener(new Game());
     }
 
    /*
@@ -61,16 +66,51 @@ public class SimpleGameController implements ListenerInterface {
         // Load the GUI
         this.gui.loadPlayerPanel();
         // Register Active Module as listener.
-        this.registerPanelListener(new Player());
+        this.ripoffPanelListener(new Player());
+    }
+    /*
+    * Loads the market panel to the main screen and registers the Market
+    * object.
+    */
+
+    private void marketPanel(){
+        // Load the GUI
+        this.gui.loadMarketPanel();
+        // Register Active Module as listener.
+        this.ripoffPanelListener(new Market());
+    }
+
+    /*
+    * Loads the register panel to the main screen and registers the Register
+    * object.
+    */
+    private void registerPanel(){
+        //Load the GUI
+        this.gui.loadRegisterPanel();
+        // Register Active Module as listener.
+        this.ripoffPanelListener(new Register());
     }
 
    /*
     * Given a module, this method registers that module as the active module. Also
     * adds the given module as a listener to the GUI.
     */
-    private void registerPanelListener(RipoffBase newModule) {
+    private void ripoffPanelListener(RipoffBase newModule) {
         this.activeModule = newModule;
         this.gui.addListener(newModule);
+    }
+
+   /*
+    * When a player tries to register or login, check to see if an account already exists.
+    * @param _username
+    * @param _password
+    */
+    private void checkUser(String _username, String _password){
+        Map< String, String > hashMap = new HashMap< String, String >();
+        hashMap.put("Username", _username);
+        hashMap.put("Password", _password);
+        HashMap<String, Object> returnData = new HashMap< String, Object >();
+        this.sql.readObject(hashMap, "players");
     }
 
    /*
@@ -78,7 +118,7 @@ public class SimpleGameController implements ListenerInterface {
     */
     @Override
     public void messageReceived(RipoffEvent event) {
-        // We're only interested in 3 particular events.
+        // We're only interested in a few particular events.
         switch (event.getMessage().getCode()){
             case RipoffMessage.GAME_PANEL:
                 System.out.println("Controller Responding to Game Panel Event.");
@@ -88,14 +128,25 @@ public class SimpleGameController implements ListenerInterface {
                 System.out.println("Controller Responding to Player Panel Event.");
                 this.playerPanel();
                 break;
+            case RipoffMessage.REGISTER_PANEL:
+                System.out.println("Controller Responding to Register Panel Event.");
+                this.registerPanel();
+                break;
+            case RipoffMessage.MARKET_PANEL:
+                System.out.println("Controller Responding to Market Panel Event.");
+                this.marketPanel();
+                break;
             case RipoffMessage.EXIT_PANEL:
                 System.out.println("Controller Responding to Main Menu Panel Event.");
                 this.mainPanel();
                 break;
+            case RipoffMessage.CHECK_LOGIN:
+                System.out.println("Checking for login");
+                //this.checkUser();
+                break;
             default:
-                System.out.println("Ignoring Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
+                System.out.println("Ignoring Simple Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
                 break;
         }
     }
-
 }
