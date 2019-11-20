@@ -118,7 +118,7 @@ public final class RipoffGUI extends RipoffBase {
         Button btn1 = this.addButton("How to play", new RipoffMessage(RipoffMessage.HOW_TO_PLAY));
         Button btn2 = this.addButton("Play against Hoomans", new RipoffMessage(RipoffMessage.PLAY_AGAINST_HOOMANS));
         Button btn3 = this.addButton("Play against AI", new RipoffMessage(RipoffMessage.PLAY_AGAINST_AI));
-        Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         VBox vbox = this.addVBox("Play Ripoff");
         vbox.getChildren().add(btn1);
         vbox.getChildren().add(btn2);
@@ -153,15 +153,15 @@ public final class RipoffGUI extends RipoffBase {
     * a scene to be added to the stage.
     */
     private Scene buildRegisterPanel(){
-        Label lblUsername = new Label("Username");
+        Label lblUsername = new Label("Enter your username.");
         TextField tfUsername = new TextField();
-        Label lblFirstname = new Label("First Name");
+        Label lblFirstname = new Label("Enter your first name.  Not needed if you've already got an account.");
         TextField tfFirstname = new TextField();
         Label lblPassword = new Label("Enter your password.  No guarentee we save it in any smart way whatsoever.");
         TextField tfPassword = new TextField();
         Label lblSSN = new Label("Enter your social security number for a chance to win $5!");
         TextField tfSSN = new TextField();
-        Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
@@ -188,7 +188,7 @@ public final class RipoffGUI extends RipoffBase {
         Label lblInfo = new Label("Thanks for visiting the Ripoff market!\n"
                 + "We only charge 50% extra convinience fee!  Don't know what that is?\n"
                 + "Ask your parents, since you're probably 14!");
-        Button btnExit = this.addButton("Exit Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         VBox vbox = this.addVBox("\"Totally not a Ripoff\" Market!");
         vbox.getChildren().add(lblInfo);
         vbox.getChildren().add(btnExit);
