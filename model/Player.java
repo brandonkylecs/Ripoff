@@ -31,7 +31,7 @@ public class Player extends RipoffBase {
     public void sendMessage() {
         System.out.println("Sending message to player: You suck.");
     }
-    
+
     /*
     * Called when the player wants to create a profile.
     */
