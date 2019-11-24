@@ -6,6 +6,9 @@ package gui;
 import events.RipoffEvent;
 import events.RipoffMessage;
 import model.RipoffBase;
+import db.Database;
+import db.DBEvent;
+import db.DBMessage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -162,7 +165,9 @@ public final class RipoffGUI extends RipoffBase {
         Label lblSSN = new Label("Enter your social security number for a chance to win $5!");
         TextField tfSSN = new TextField();
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
-        Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+        //Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+        Button btnRegister = this.addButton("Register", new RipoffMessage(DBMessage.USER));
+        //Button btnRegister = this.addButton("Register", new Database(Database.USER, tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
         vbox.getChildren().add(lblUsername);
@@ -209,6 +214,25 @@ public final class RipoffGUI extends RipoffBase {
             public void handle(ActionEvent event) {
                 // Fire a custom event.
                 RipoffEvent ripEvent = new RipoffEvent(this, _throwMessage);
+                fireEvent(ripEvent);
+            }
+        });
+        return btn;
+    }
+    
+    /*
+    * Builds a button given a title and a message to throw for its event.
+    * @param String _title the label text for the button
+    * @param Database _throwMessage the message to send with the event.
+    */
+    private Button addButton(String _title, final DBMessage _throwMessage) {
+        Button btn = new Button();
+        btn.setText(_title);
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Fire a custom event.
+                DBEvent ripEvent = new DBEvent(this, _throwMessage);
                 fireEvent(ripEvent);
             }
         });
