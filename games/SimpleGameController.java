@@ -5,6 +5,9 @@
 package games;
 
 import java.util.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 import model.RipoffBase;
 import model.Game;
 import model.Register;
@@ -98,6 +101,19 @@ public class SimpleGameController implements ListenerInterface {
     private void ripoffPanelListener(RipoffBase newModule) {
         this.activeModule = newModule;
         this.gui.addListener(newModule);
+    }
+    
+    /*
+     * Saves the user data for when they try to register.  Checks to see if the user exists already.
+     * @param _username
+     * @param _firstName
+     * @param _password
+     */
+    private void registerNewUser(String _username, String _firstName, String _password) throws IOException{
+        //TODO check for user already existing.
+        FileWriter write = new FileWriter("/users/" + _username);
+        write.write("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password);
+   
     }
 
    /*
