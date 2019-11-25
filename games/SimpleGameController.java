@@ -5,6 +5,9 @@
 package games;
 
 import java.util.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 import model.RipoffBase;
 import model.Game;
 import model.Register;
@@ -99,18 +102,17 @@ public class SimpleGameController implements ListenerInterface {
         this.activeModule = newModule;
         this.gui.addListener(newModule);
     }
-
-   /*
-    * When a player tries to register or login, check to see if an account already exists.
-    * @param _username
-    * @param _password
-    */
-    private void checkUser(String _username, String _password){
-        Map< String, String > hashMap = new HashMap< String, String >();
-        hashMap.put("Username", _username);
-        hashMap.put("Password", _password);
-        HashMap<String, Object> returnData = new HashMap< String, Object >();
-        this.sql.readObject(hashMap, "players");
+    
+    /*
+     * Saves the user data for when they try to register.  Checks to see if the user exists already.
+     * @param _username
+     * @param _firstName
+     * @param _password
+     */
+    private void registerNewUser(String _username, String _firstName, String _password) throws IOException{
+        //TODO check for user already existing.
+        FileWriter write = new FileWriter("/users/" + _username);
+        write.write("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password);
     }
 
    /*
