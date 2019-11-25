@@ -90,6 +90,17 @@ public final class RipoffGUI extends RipoffBase {
         this.primaryStage.setScene(marketScene);
         this.primaryStage.show();
     }
+    
+    /*
+    * Loads the play panel.
+    */
+    public void loadPlayPanel(){
+        System.out.println("Loading Play Panel");
+        Scene playScene = this.buildPlayPanel();
+        this.primaryStage.setTitle("Ripoff Play Game");
+        this.primaryStage.setScene(playScene);
+        this.primaryStage.show();
+    }
 
    /*
     * Helper function for building the main panel. Creates two buttons and returns
@@ -117,8 +128,8 @@ public final class RipoffGUI extends RipoffBase {
     */
     private Scene buildGamePanel(){
         Button btn1 = this.addButton("How to play", new RipoffMessage(RipoffMessage.HOW_TO_PLAY));
-        Button btn2 = this.addButton("Play against Hoomans", new RipoffMessage(RipoffMessage.PLAY_AGAINST_HOOMANS));
-        Button btn3 = this.addButton("Play against AI", new RipoffMessage(RipoffMessage.PLAY_AGAINST_AI));
+        Button btn2 = this.addButton("Play against Hoomans", new RipoffMessage(RipoffMessage.PLAY_PANEL));
+        Button btn3 = this.addButton("Play against AI", new RipoffMessage(RipoffMessage.PLAY_PANEL));
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         VBox vbox = this.addVBox("Play Ripoff");
         vbox.getChildren().add(btn1);
@@ -164,10 +175,17 @@ public final class RipoffGUI extends RipoffBase {
         TextField tfSSN = new TextField();
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+<<<<<<< HEAD
 
         //Trying to do something like this:
         //Button btnRegister = this.addButton("Register", new SimpleGameController.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
 
+=======
+        
+        // Trying to do this, please help me Quiggles
+        //Button btnRegister = this.addButton("Register", new SimpleGameController.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
+        
+>>>>>>> badcbd8eadbd4201aaf8c5e9d5cdc6ada112a6af
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
         vbox.getChildren().add(lblUsername);
@@ -198,6 +216,14 @@ public final class RipoffGUI extends RipoffBase {
         vbox.getChildren().add(lblInfo);
         vbox.getChildren().add(btnExit);
         Scene scene = new Scene(vbox, 500, 350);
+        return scene;
+    }
+    
+    private Scene buildPlayPanel(){
+        Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        VBox vbox = this.addVBox("Play a game!");
+        vbox.getChildren().add(btnExit);
+        Scene scene = new Scene(vbox, 400, 200);
         return scene;
     }
 

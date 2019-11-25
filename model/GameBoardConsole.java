@@ -1,5 +1,5 @@
 
-package games;
+package model;
 
 import java.util.ArrayList;
 import model.Card;
@@ -9,14 +9,14 @@ import model.ComputerOpponent;
 
 /**
  *
- * @author Brandon Kyle Last Updated: 10/08/2019
+ * @author Brandon Kyle Last Updated: 11/25/2019
  */
 import java.util.Scanner;
-public class GameControllerConsole {
+public class GameBoardConsole {
 
     private Scanner readInput = new Scanner(System.in);
 
-    public GameControllerConsole() {
+    public GameBoardConsole() {
     }
 
     public void runGame(int _numDrawn) {
