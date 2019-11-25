@@ -4,10 +4,12 @@
  */
 package games;
 
+import java.util.*;
 import model.RipoffBase;
 import model.Game;
 import model.Register;
 import model.Market;
+import db.MySQLConnector;
 import gui.RipoffGUI;
 import javafx.stage.Stage;
 import events.RipoffEvent;
@@ -22,6 +24,7 @@ public class SimpleGameController implements ListenerInterface {
 
     // Add reference to all modules.
     protected RipoffGUI gui;
+    protected MySQLConnector sql;
     protected RipoffBase activeModule = null;
 
     SimpleGameController(Stage primaryStage) {
@@ -69,14 +72,14 @@ public class SimpleGameController implements ListenerInterface {
     * Loads the market panel to the main screen and registers the Market
     * object.
     */
-    
+
     private void marketPanel(){
         // Load the GUI
         this.gui.loadMarketPanel();
         // Register Active Module as listener.
         this.ripoffPanelListener(new Market());
     }
-    
+
     /*
     * Loads the register panel to the main screen and registers the Register
     * object.
@@ -95,6 +98,19 @@ public class SimpleGameController implements ListenerInterface {
     private void ripoffPanelListener(RipoffBase newModule) {
         this.activeModule = newModule;
         this.gui.addListener(newModule);
+    }
+
+   /*
+    * When a player tries to register or login, check to see if an account already exists.
+    * @param _username
+    * @param _password
+    */
+    private void checkUser(String _username, String _password){
+        Map< String, String > hashMap = new HashMap< String, String >();
+        hashMap.put("Username", _username);
+        hashMap.put("Password", _password);
+        HashMap<String, Object> returnData = new HashMap< String, Object >();
+        this.sql.readObject(hashMap, "players");
     }
 
    /*
@@ -124,10 +140,13 @@ public class SimpleGameController implements ListenerInterface {
                 System.out.println("Controller Responding to Main Menu Panel Event.");
                 this.mainPanel();
                 break;
+            case RipoffMessage.CHECK_LOGIN:
+                System.out.println("Checking for login");
+                //this.checkUser();
+                break;
             default:
                 System.out.println("Ignoring Simple Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
                 break;
         }
     }
-
 }
