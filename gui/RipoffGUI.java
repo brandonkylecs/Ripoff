@@ -200,6 +200,12 @@ public final class RipoffGUI extends RipoffBase {
         Scene scene = new Scene(vbox, 500, 350);
         return scene;
     }
+    
+    private Scene buildPlayPanel(){
+        VBox vbox = this.addVBox("Play a game!");
+        Scene scene = new Scene(vbox, 400, 200);
+        return scene;
+    }
 
    /*
     * Builds a button given a title and a message to throw for its event.
