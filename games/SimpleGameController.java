@@ -101,19 +101,6 @@ public class SimpleGameController implements ListenerInterface {
     }
 
    /*
-    * When a player tries to register or login, check to see if an account already exists.
-    * @param _username
-    * @param _password
-    */
-    private void checkUser(String _username, String _password){
-        Map< String, String > hashMap = new HashMap< String, String >();
-        hashMap.put("Username", _username);
-        hashMap.put("Password", _password);
-        HashMap<String, Object> returnData = new HashMap< String, Object >();
-        this.sql.readObject(hashMap, "players");
-    }
-
-   /*
     * Respond to events that this module is listening for.
     */
     @Override
