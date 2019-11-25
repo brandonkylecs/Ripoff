@@ -17,6 +17,7 @@ public class RipoffMessage {
     public static final int EXIT_PANEL = 3;
     public static final int REGISTER_PANEL = 4;
     public static final int MARKET_PANEL = 5;
+    public static final int PLAY_PANEL = 6;
 
     /*
     * Player Messages.

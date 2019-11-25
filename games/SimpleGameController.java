@@ -12,6 +12,7 @@ import model.RipoffBase;
 import model.Game;
 import model.Register;
 import model.Market;
+import model.Play;
 import db.MySQLConnector;
 import gui.RipoffGUI;
 import javafx.stage.Stage;
@@ -93,6 +94,17 @@ public class SimpleGameController implements ListenerInterface {
         // Register Active Module as listener.
         this.ripoffPanelListener(new Register());
     }
+    
+    /*
+    * Loads the play panel to the main screen and registers the Play
+    * object.
+    */
+    private void playPanel(){
+        //Load the GUI
+        this.gui.loadPlayPanel();
+        // Register Active Module as listener.
+        this.ripoffPanelListener(new Play());
+    }
 
    /*
     * Given a module, this method registers that module as the active module. Also
@@ -137,6 +149,10 @@ public class SimpleGameController implements ListenerInterface {
             case RipoffMessage.MARKET_PANEL:
                 System.out.println("Controller Responding to Market Panel Event.");
                 this.marketPanel();
+                break;
+            case RipoffMessage.PLAY_PANEL:
+                System.out.println("Conroller Responding to Play Panel Event.");
+                this.playPanel();
                 break;
             case RipoffMessage.EXIT_PANEL:
                 System.out.println("Controller Responding to Main Menu Panel Event.");
