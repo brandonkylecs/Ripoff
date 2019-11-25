@@ -150,6 +150,36 @@ public class Deck {
             this.deckCards.add(_setToAdd.remove(0));
         }
     }
+    
+    /**
+     * Fills deck with base cards.
+     * 
+     * @param _deck
+     * @author Tyler Wallschleger 11/25
+     */
+    public Deck fillDeck(Deck _deck){
+        Card testCardOne = new Card("Card One", "01", 1);
+        Card testCardTwo = new Card("Card Two", "02", 2);
+        Card testCardThree = new Card("Card Three", "03", 3);
+        Card testCardFour = new Card("Card Four", "04", 4);
+        Card testCardFive = new Card("Card Five", "05", 5);
+        Card testCardSix = new Card("Card Six", "06", 6);
+        Card testCardSeven = new Card("Card Seven", "07", 7);
+        Card testCardEight = new Card("Card Eight", "08", 8);
+        Card testCardNine = new Card("Card Nine", "09", 9);
+        Card testCardTen = new Card("Card Ten", "10", 10);
+        _deck.addCard(testCardOne);
+        _deck.addCard(testCardTwo);
+        _deck.addCard(testCardThree);
+        _deck.addCard(testCardFour);
+        _deck.addCard(testCardFive);
+        _deck.addCard(testCardSix);
+        _deck.addCard(testCardSeven);
+        _deck.addCard(testCardEight);
+        _deck.addCard(testCardNine);
+        _deck.addCard(testCardTen);
+        return _deck;
+    }
 
     /**
      * This method finds the index of the card in the deck with the minimum ID and returns it. This is intended to be used as a helper method with sortByID().
