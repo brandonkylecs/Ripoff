@@ -6,7 +6,11 @@ package gui;
 import events.RipoffEvent;
 import events.RipoffMessage;
 import model.RipoffBase;
+import model.Card;
+import model.Deck;
+import model.Contender;
 import games.SimpleGameController;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -103,7 +108,7 @@ public final class RipoffGUI extends RipoffBase {
     }
 
    /*
-    * Helper function for building the main panel. Creates two buttons and returns
+    * Helper function for building the main panel. Creates the buttons and returns
     * a scene to be added to the stage.
     */
     private Scene buildMainPanel() {
@@ -123,7 +128,7 @@ public final class RipoffGUI extends RipoffBase {
     }
 
    /*
-    * Helper function for building the transaction panel. Creates the buttons and returns
+    * Helper function for building the game panel. Creates the buttons and returns
     * a scene to be added to the stage.
     */
     private Scene buildGamePanel(){
@@ -213,10 +218,55 @@ public final class RipoffGUI extends RipoffBase {
     }
     
     private Scene buildPlayPanel(){
-        Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
-        VBox vbox = this.addVBox("Play a game!");
-        vbox.getChildren().add(btnExit);
-        Scene scene = new Scene(vbox, 400, 200);
+        Contender player = new Contender();
+        Contender ai = new Contender();
+        Deck aiDeck = new Deck();
+        aiDeck.fillDeck(aiDeck);
+        aiDeck.shuffleCards();
+        ArrayList<Card> aiCards = new ArrayList();
+        //For right now, draw three random cards.
+        aiCards = aiDeck.drawCards(3);
+        
+        Card aiCard1 = aiCards.get(0);
+        Card aiCard2 = aiCards.get(1);
+        Card aiCard3 = aiCards.get(2);
+        
+        Deck playerDeck = new Deck();
+        playerDeck.fillDeck(playerDeck);
+        playerDeck.shuffleCards();
+        ArrayList<Card> cards = new ArrayList();
+        //For right now, draw three random cards.
+        cards = playerDeck.drawCards(3);
+        
+        Card card1 = cards.get(0);
+        Card card2 = cards.get(1);
+        Card card3 = cards.get(2);
+
+        Label lblCard1 = new Label(Integer.toString(card1.getPower()));
+        Label lblCard2 = new Label(Integer.toString(card2.getPower()));
+        Label lblCard3 = new Label(Integer.toString(card3.getPower()));
+        
+        Button btnCard1 = new Button("Play Card 1");
+        Button btnCard2 = new Button("Play Card 2");
+        Button btnCard3 = new Button("Play Card 3");
+        
+        btnCard1.setOnAction((ActionEvent e) -> {
+            int win = card1.comparePower(aiCard1);
+        });
+        Button btnExit = this.addButton("Quit like a loser", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        Button btnPlayAgain = this.addButton("Restart Game", new RipoffMessage(RipoffMessage.PLAY_PANEL));
+        GridPane grid = new GridPane();
+        
+        grid.add(lblCard1, 0, 0);
+        grid.add(lblCard2, 1, 0);
+        grid.add(lblCard3, 2, 0);
+        grid.add(btnCard1, 0, 2);
+        grid.add(btnCard2, 1, 2);
+        grid.add(btnCard3, 2, 2);
+        
+        grid.add(btnExit, 0, 4);
+        grid.add(btnPlayAgain, 1, 4);
+        Scene scene = new Scene(grid, 600, 400);
         return scene;
     }
 
