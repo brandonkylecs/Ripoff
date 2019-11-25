@@ -102,7 +102,7 @@ public class SimpleGameController implements ListenerInterface {
         this.activeModule = newModule;
         this.gui.addListener(newModule);
     }
-    
+
     /*
      * Saves the user data for when they try to register.  Checks to see if the user exists already.
      * @param _username
@@ -110,10 +110,12 @@ public class SimpleGameController implements ListenerInterface {
      * @param _password
      */
     private void registerNewUser(String _username, String _firstName, String _password) throws IOException{
-        //TODO check for user already existing.
+        // TODO check for user already existing.
         FileWriter write = new FileWriter("/users/" + _username);
         write.write("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password);
-   
+
+        // Return to main panel after logging user in.
+        this.mainPanel();
     }
 
    /*
@@ -146,6 +148,9 @@ public class SimpleGameController implements ListenerInterface {
             case RipoffMessage.CHECK_LOGIN:
                 System.out.println("Checking for login");
                 //this.checkUser();
+                break;
+            case RipoffMessage.CREATE_PROFILE:
+                System.out.println("Creating profile...");
                 break;
             default:
                 System.out.println("Ignoring Simple Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
