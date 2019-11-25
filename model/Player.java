@@ -1,7 +1,7 @@
 /*
  * The Player object for handling player options.
  */
-package model;
+package com.stripe.ripoff.model;
 
 import events.RipoffEvent;
 import events.RipoffMessage;

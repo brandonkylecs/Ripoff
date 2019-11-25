@@ -5,16 +5,16 @@
 package games;
 
 import java.util.*;
-import model.RipoffBase;
-import model.Game;
-import model.Register;
-import model.Market;
+import com.stripe.ripoff.model.RipoffBase;
+import com.stripe.ripoff.model.Game;
+import com.stripe.ripoff.model.Register;
+import com.stripe.ripoff.model.Market;
 import db.MySQLConnector;
 import gui.RipoffGUI;
 import javafx.stage.Stage;
 import events.RipoffEvent;
 import events.RipoffMessage;
-import model.Player;
+import com.stripe.ripoff.model.Player;
 import events.ListenerInterface;
 /**
  *

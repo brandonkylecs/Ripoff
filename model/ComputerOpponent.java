@@ -1,4 +1,4 @@
-package model;
+package com.stripe.ripoff.model;
 
 /**
  *

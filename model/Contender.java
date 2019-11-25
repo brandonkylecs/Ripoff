@@ -1,4 +1,4 @@
-package model;
+package com.stripe.ripoff.model;
 
 /**
  * This class is the parent for all the models of contenders that will be made.

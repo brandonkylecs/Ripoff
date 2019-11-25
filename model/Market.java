@@ -1,7 +1,7 @@
 /*
  * The Register object for handling registration.
  */
-package model;
+package com.stripe.ripoff.model;
 
 import events.RipoffEvent;
 import events.RipoffMessage;

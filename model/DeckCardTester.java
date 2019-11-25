@@ -1,4 +1,4 @@
-package model;
+package com.stripe.ripoff.model;
 
 /**
  * This class performs some simple tests to ensure that both the Deck and Card classes are working correctly.

@@ -5,7 +5,7 @@ package gui;
 
 import events.RipoffEvent;
 import events.RipoffMessage;
-import model.RipoffBase;
+import com.stripe.ripoff.model.RipoffBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

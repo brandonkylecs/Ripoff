@@ -1,4 +1,4 @@
-package model;
+package com.stripe.ripoff.model;
 
 /**
  * This class performs tests to ensure that the ComputerOpponent class is working properly and lets the user play against an AI opponent in the console.
