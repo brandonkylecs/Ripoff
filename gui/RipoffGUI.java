@@ -90,6 +90,17 @@ public final class RipoffGUI extends RipoffBase {
         this.primaryStage.setScene(marketScene);
         this.primaryStage.show();
     }
+    
+    /*
+    * Loads the play panel.
+    */
+    public void loadPlayPanel(){
+        System.out.println("Loading Play Panel");
+        Scene playScene = this.buildPlayPanel();
+        this.primaryStage.setTitle("Ripoff Play Game");
+        this.primaryStage.setScene(playScene);
+        this.primaryStage.show();
+    }
 
    /*
     * Helper function for building the main panel. Creates two buttons and returns
@@ -117,8 +128,8 @@ public final class RipoffGUI extends RipoffBase {
     */
     private Scene buildGamePanel(){
         Button btn1 = this.addButton("How to play", new RipoffMessage(RipoffMessage.HOW_TO_PLAY));
-        Button btn2 = this.addButton("Play against Hoomans", new RipoffMessage(RipoffMessage.PLAY_AGAINST_HOOMANS));
-        Button btn3 = this.addButton("Play against AI", new RipoffMessage(RipoffMessage.PLAY_AGAINST_AI));
+        Button btn2 = this.addButton("Play against Hoomans", new RipoffMessage(RipoffMessage.PLAY_PANEL));
+        Button btn3 = this.addButton("Play against AI", new RipoffMessage(RipoffMessage.PLAY_PANEL));
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         VBox vbox = this.addVBox("Play Ripoff");
         vbox.getChildren().add(btn1);
@@ -198,6 +209,14 @@ public final class RipoffGUI extends RipoffBase {
         vbox.getChildren().add(lblInfo);
         vbox.getChildren().add(btnExit);
         Scene scene = new Scene(vbox, 500, 350);
+        return scene;
+    }
+    
+    private Scene buildPlayPanel(){
+        Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        VBox vbox = this.addVBox("Play a game!");
+        vbox.getChildren().add(btnExit);
+        Scene scene = new Scene(vbox, 400, 200);
         return scene;
     }
 
