@@ -113,7 +113,6 @@ public class SimpleGameController implements ListenerInterface {
         //TODO check for user already existing.
         FileWriter write = new FileWriter("/users/" + _username);
         write.write("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password);
-   
     }
 
    /*
