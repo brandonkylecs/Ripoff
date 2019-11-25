@@ -175,10 +175,17 @@ public final class RipoffGUI extends RipoffBase {
         TextField tfSSN = new TextField();
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+<<<<<<< HEAD
+
+        //Trying to do something like this:
+        //Button btnRegister = this.addButton("Register", new SimpleGameController.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
+
+=======
         
         // Trying to do this, please help me Quiggles
         //Button btnRegister = this.addButton("Register", new SimpleGameController.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
         
+>>>>>>> badcbd8eadbd4201aaf8c5e9d5cdc6ada112a6af
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
         vbox.getChildren().add(lblUsername);
