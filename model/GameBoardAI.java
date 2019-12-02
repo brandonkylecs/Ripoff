@@ -99,6 +99,7 @@ public class GameBoardAI {
         return playerOneDrawn;
     }
 
+// ================= GETTERS ==========================
     public Deck getPlayerOneDeck() {
         return playerOne.getDeck();
     }
@@ -115,6 +116,7 @@ public class GameBoardAI {
         return playerTwoWins;
     }
 
+// ================= SETTERS ==========================
     private void incrementPlayerOneWins() {
         playerOneWins = playerOneWins+1;
     }
