@@ -6,6 +6,8 @@ package model;
 import events.RipoffEvent;
 import events.RipoffMessage;
 import games.SimpleGameController;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -33,12 +35,20 @@ public class Player extends RipoffBase {
     }
 
     /*
-    * Called when the player wants to create a profile.
-    */
-    public void createProfile(){
-        System.out.println("Creating profile.");
-    }
+     * Saves the user data for when they try to register.  Checks to see if the user exists already.
+     * @param _username
+     * @param _firstName
+     * @param _password
+     */
+    public RipoffMessage registerNewUser(String _username, String _firstName, String _password) throws IOException{
+        // TODO check for user already existing.
+        FileWriter write = new FileWriter("src/players/users.txt");
+        write.append("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password + "\n");
+        System.out.println("\nGOT HERE\n");
 
+        // Return to main panel after logging user in.
+        return new RipoffMessage(RipoffMessage.EXIT_PANEL);
+    }
 
     @Override
     public void messageReceived(RipoffEvent event) {
@@ -50,10 +60,6 @@ public class Player extends RipoffBase {
             case RipoffMessage.SEND_MEMES:
                 System.out.println(RipoffMessage.SEND_MEMES);
                 this.sendMessage();
-                break;
-            case RipoffMessage.CREATE_PROFILE:
-                System.out.println(RipoffMessage.CREATE_PROFILE);
-                this.createProfile();
                 break;
             default:
                 System.out.println("I don\'t know what you want me to do: " + event.getMessage().getCode());

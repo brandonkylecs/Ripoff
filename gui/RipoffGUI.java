@@ -10,7 +10,10 @@ import model.Card;
 import model.Deck;
 import model.Contender;
 import games.SimpleGameController;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -25,6 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Player;
 
 /**
  *
@@ -179,10 +183,16 @@ public final class RipoffGUI extends RipoffBase {
         Label lblSSN = new Label("Enter your social security number for a chance to win $5!");
         TextField tfSSN = new TextField();
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
-        Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+        //Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
 
         // Trying to do this, please help me Quiggles
-        //Button btnRegister = this.addButton("Register", new SimpleGameController.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
+        Player player = new Player();
+        Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        try {
+            btnRegister = this.addButton("Register", player.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
+        } catch (IOException ex) {
+            Logger.getLogger(RipoffGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");
