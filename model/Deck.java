@@ -3,7 +3,7 @@ package model;
 /**
  * This class contains the Deck object which will represent the card deck in the game. In the game, it will contain all of a user's usable cards.
  *
- * @author Brandon Kyle Last Updated: 10/06/2019
+ * @author Brandon Kyle, Tyler Last Updated: 10/06/2019
  */
 
 import java.util.ArrayList;
@@ -18,7 +18,8 @@ public class Deck {
     }
 
     public Deck() {
-        System.out.println("Deck module loaded.");
+        System.out.println("Deck module loaded without Cards.");
+        this.deckCards = null;
     }
 
     /**
@@ -150,14 +151,13 @@ public class Deck {
             this.deckCards.add(_setToAdd.remove(0));
         }
     }
-    
+
     /**
-     * Fills deck with base cards.
-     * 
+     * Fills deck with base Cards, will replace any Cards that are currently in the Deck.
+     *
      * @param _deck
-     * @author Tyler Wallschleger 11/25
      */
-    public Deck fillDeck(Deck _deck){
+    public void fillDeck(){
         Card testCardOne = new Card("Card One", "01", 1);
         Card testCardTwo = new Card("Card Two", "02", 2);
         Card testCardThree = new Card("Card Three", "03", 3);
@@ -168,17 +168,18 @@ public class Deck {
         Card testCardEight = new Card("Card Eight", "08", 8);
         Card testCardNine = new Card("Card Nine", "09", 9);
         Card testCardTen = new Card("Card Ten", "10", 10);
-        _deck.addCard(testCardOne);
-        _deck.addCard(testCardTwo);
-        _deck.addCard(testCardThree);
-        _deck.addCard(testCardFour);
-        _deck.addCard(testCardFive);
-        _deck.addCard(testCardSix);
-        _deck.addCard(testCardSeven);
-        _deck.addCard(testCardEight);
-        _deck.addCard(testCardNine);
-        _deck.addCard(testCardTen);
-        return _deck;
+        ArrayList<Card> filledDeck = new ArrayList<Card>();
+        filledDeck.add(testCardOne);
+        filledDeck.add(testCardTwo);
+        filledDeck.add(testCardThree);
+        filledDeck.add(testCardFour);
+        filledDeck.add(testCardFive);
+        filledDeck.add(testCardSix);
+        filledDeck.add(testCardSeven);
+        filledDeck.add(testCardEight);
+        filledDeck.add(testCardNine);
+        filledDeck.add(testCardTen);
+        this.setDeckCards(filledDeck);
     }
 
     /**
