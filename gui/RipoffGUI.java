@@ -95,7 +95,7 @@ public final class RipoffGUI extends RipoffBase {
         this.primaryStage.setScene(marketScene);
         this.primaryStage.show();
     }
-    
+
     /*
     * Loads the play panel.
     */
@@ -216,28 +216,27 @@ public final class RipoffGUI extends RipoffBase {
         Scene scene = new Scene(vbox, 500, 350);
         return scene;
     }
-    
+
     private Scene buildPlayPanel(){
         Contender player = new Contender();
         Contender ai = new Contender();
         Deck aiDeck = new Deck();
-        aiDeck.fillDeck(aiDeck);
+        aiDeck.fillDeck();
         aiDeck.shuffleCards();
         ArrayList<Card> aiCards = new ArrayList();
         //For right now, draw three random cards.
         aiCards = aiDeck.drawCards(3);
-        
         Card aiCard1 = aiCards.get(0);
         Card aiCard2 = aiCards.get(1);
         Card aiCard3 = aiCards.get(2);
-        
+
         Deck playerDeck = new Deck();
-        playerDeck.fillDeck(playerDeck);
+        playerDeck.fillDeck();
         playerDeck.shuffleCards();
         ArrayList<Card> cards = new ArrayList();
         //For right now, draw three random cards.
         cards = playerDeck.drawCards(3);
-        
+
         Card card1 = cards.get(0);
         Card card2 = cards.get(1);
         Card card3 = cards.get(2);
@@ -245,25 +244,25 @@ public final class RipoffGUI extends RipoffBase {
         Label lblCard1 = new Label(Integer.toString(card1.getPower()));
         Label lblCard2 = new Label(Integer.toString(card2.getPower()));
         Label lblCard3 = new Label(Integer.toString(card3.getPower()));
-        
+
         Button btnCard1 = new Button("Play Card 1");
         Button btnCard2 = new Button("Play Card 2");
         Button btnCard3 = new Button("Play Card 3");
-        
+
         btnCard1.setOnAction((ActionEvent e) -> {
             int win = card1.comparePower(aiCard1);
         });
         Button btnExit = this.addButton("Quit like a loser", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnPlayAgain = this.addButton("Restart Game", new RipoffMessage(RipoffMessage.PLAY_PANEL));
         GridPane grid = new GridPane();
-        
+
         grid.add(lblCard1, 0, 0);
         grid.add(lblCard2, 1, 0);
         grid.add(lblCard3, 2, 0);
         grid.add(btnCard1, 0, 2);
         grid.add(btnCard2, 1, 2);
         grid.add(btnCard3, 2, 2);
-        
+
         grid.add(btnExit, 0, 4);
         grid.add(btnPlayAgain, 1, 4);
         Scene scene = new Scene(grid, 600, 400);

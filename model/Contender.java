@@ -13,6 +13,7 @@ public class Contender {
     protected int lostRounds;
 
     public Contender() {
+        myDeck = null;
     }
 
     public Card queryForCard(int _pickedCards) {
