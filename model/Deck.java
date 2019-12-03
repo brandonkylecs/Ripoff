@@ -19,7 +19,6 @@ public class Deck {
 
     public Deck() {
         System.out.println("Deck module loaded without Cards.");
-        this.deckCards = null;
     }
 
     /**
