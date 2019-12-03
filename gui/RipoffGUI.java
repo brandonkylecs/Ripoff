@@ -183,16 +183,20 @@ public final class RipoffGUI extends RipoffBase {
         Label lblSSN = new Label("Enter your social security number for a chance to win $5!");
         TextField tfSSN = new TextField();
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
-        //Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
-
-        // Trying to do this, please help me Quiggles
         Player player = new Player();
-        Button btnRegister = this.addButton("Register", new RipoffMessage(RipoffMessage.EXIT_PANEL));
-        try {
-            btnRegister = this.addButton("Register", player.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText()));
-        } catch (IOException ex) {
-            Logger.getLogger(RipoffGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Button btnRegister = new Button("Register");
+
+        btnRegister.setOnAction((ActionEvent e) -> {
+            // Try catch is for IOException.
+            try {
+                // Fire a custom event.
+                player.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText());
+                RipoffEvent ripEvent = new RipoffEvent(this, new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+                fireEvent(ripEvent);
+            } catch (IOException ex) {
+                Logger.getLogger(RipoffGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
 
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");

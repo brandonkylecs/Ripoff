@@ -8,6 +8,7 @@ import events.RipoffMessage;
 import games.SimpleGameController;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -42,9 +43,12 @@ public class Player extends RipoffBase {
      */
     public RipoffMessage registerNewUser(String _username, String _firstName, String _password) throws IOException{
         // TODO check for user already existing.
-        FileWriter write = new FileWriter("src/players/users.txt");
-        write.append("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password + "\n");
-        System.out.println("\nGOT HERE\n");
+        String currentPath = System.getProperty("user.dir");
+        System.out.println(currentPath + "\\src\\players\\users.txt");
+
+        PrintWriter write = new PrintWriter(currentPath + "/src/players/users.txt", "UTF-8");
+        write.println("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password);
+        write.close();
 
         // Return to main panel after logging user in.
         return new RipoffMessage(RipoffMessage.EXIT_PANEL);
