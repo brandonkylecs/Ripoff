@@ -8,17 +8,17 @@ package model;
 import java.util.ArrayList;
 public class Contender {
 
-    protected Deck myDeck;
-    protected int wonRounds;
-    protected int lostRounds;
+    protected Deck myDeck = new Deck();
+    protected int wonRounds = 0;
+    protected int lostRounds = 0;
 
     public Contender() {
         //myDeck = null;
     }
 
-    public Card queryForCard(int _pickedCards) {
+    /**public Card queryForCard(int _pickedCards) {
         return null;
-    }
+    }*/
 
 // ================= GETTERS ==========================
     public Deck getDeck() {

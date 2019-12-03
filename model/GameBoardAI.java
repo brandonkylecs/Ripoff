@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class GameBoardAI {
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
-    private Contender playerOne;
-    private ComputerOpponent playerTwo;
+    private Contender playerOne = new Contender();
+    private ComputerOpponent playerTwo = new ComputerOpponent();
     private ArrayList<Card> playerOneDrawn;
     private ArrayList<Card> playerTwoDrawn;
 
