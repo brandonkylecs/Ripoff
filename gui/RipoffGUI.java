@@ -28,6 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.GameBoardAI;
 import model.Player;
 
 /**
@@ -234,7 +235,8 @@ public final class RipoffGUI extends RipoffBase {
     private Scene buildPlayPanel(){
         Contender player = new Contender();
         Contender ai = new Contender();
-        Deck aiDeck = new Deck();
+        GameBoardAI gb = new GameBoardAI();
+        /*Deck aiDeck = new Deck();
         aiDeck.fillDeck();
         aiDeck.shuffleCards();
         ArrayList<Card> aiCards = new ArrayList();
@@ -246,14 +248,14 @@ public final class RipoffGUI extends RipoffBase {
 
         Deck playerDeck = new Deck();
         playerDeck.fillDeck();
-        playerDeck.shuffleCards();
+        playerDeck.shuffleCards();*/
         ArrayList<Card> cards = new ArrayList();
         //For right now, draw three random cards.
-        cards = playerDeck.drawCards(3);
+        cards = gb.getPlayerOneChoices();
 
         Card card1 = cards.get(0);
         Card card2 = cards.get(1);
-        Card card3 = cards.get(2);
+        Card card3 = cards.get(2); 
 
         Label lblCard1 = new Label(Integer.toString(card1.getPower()));
         Label lblCard2 = new Label(Integer.toString(card2.getPower()));
@@ -263,9 +265,6 @@ public final class RipoffGUI extends RipoffBase {
         Button btnCard2 = new Button("Play Card 2");
         Button btnCard3 = new Button("Play Card 3");
 
-        btnCard1.setOnAction((ActionEvent e) -> {
-            int win = card1.comparePower(aiCard1);
-        });
         Button btnExit = this.addButton("Quit like a loser", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnPlayAgain = this.addButton("Restart Game", new RipoffMessage(RipoffMessage.PLAY_PANEL));
         GridPane grid = new GridPane();
