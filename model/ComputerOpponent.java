@@ -32,7 +32,7 @@ public class ComputerOpponent extends Contender {
      * @param _pickedCards
      * @return
      */
-    @Override
+    //@Override
     public Card queryForCard(int _pickedCards) {
         System.out.println("The AI is being queried for its card.");
         if(_pickedCards > this.myDeck.getSize()) {
