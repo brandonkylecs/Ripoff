@@ -33,7 +33,12 @@ public class RipoffMessage {
     public static final int HOW_TO_PLAY = 100;
     public static final int PLAY_AGAINST_HOOMANS = 200;
     public static final int PLAY_AGAINST_AI = 300;
-    public static final int PLAYER_WON = 400;
+    public static final int PLAYER_WON_ROUND = 400;
+    public static final int AI_WON_ROUND = 401;
+    public static final int DRAW_ROUND = 402;
+    public static final int PLAYER_WON_GAME = 403;
+    public static final int AI_WON_GAME = 404;
+    public static final int ERROR = 999;
 
     private final int _thismessage;
 

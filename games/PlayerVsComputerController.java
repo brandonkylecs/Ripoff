@@ -3,8 +3,10 @@ package games;
 /**
  *This class is a Controller for playing a game against the AI. It takes the user's input from the GUI and uses the GameBoardAI model to perform the operations to play the game.
  *
- * @author Brandon Kyle, Last Updated 12/02/2019
+ * @author Brandon Kyle, Tyler Wallschleger Last Updated 12/04/2019
  */
+import events.RipoffMessage;
+import model.Card;
 import model.GameBoardAI;
 import model.Deck;
 public class PlayerVsComputerController {
@@ -17,5 +19,15 @@ public class PlayerVsComputerController {
     //Because neither Deck can have any unique Cards the version of the GameBoardAI constructor method that fills the Decks with generic cards will be used instead.
     private GameBoardAI playSession = new GameBoardAI();
     public PlayerVsComputerController() {
+    }
+    
+    /*
+     * This method takes the card the player chose determines the winner.
+     * @param Card _playerCard
+     * @returns RipoffMessage winner
+     */
+    public RipoffMessage playCard(Card _playerCard){
+        RipoffMessage winner = new RipoffMessage(RipoffMessage.PLAYER_WON_ROUND);
+        return winner;
     }
 }

@@ -7,6 +7,7 @@ package model;
  * @author Brandon Kyle, Last Updated 12/01/2019
  */
 
+import events.RipoffMessage;
 import java.util.ArrayList;
 
 public class GameBoardAI {
@@ -62,28 +63,29 @@ public class GameBoardAI {
     }
 
     /**
-     * This method checks which Card had the more power and a String is returned saying which Card had more. If there is an error, the String "Error" is returned and a message is printed to
+     * This method checks which Card had the more power and a Message is returned saying which Card had more. If there is an error, the Message "Error" is returned and a message is printed to
      * the console.
      *
      * @param _playerCard
      * @param _aiCard
-     * @return
+     * @return RipoffMessage
      */
-    public String determineRoundWinner(Card _playerCard, Card _aiCard) {
+    public RipoffMessage determineRoundWinner(Card _playerCard, Card _aiCard) {
         int powerComparison = _playerCard.comparePower(_aiCard);
+        RipoffMessage result = new RipoffMessage(RipoffMessage.PLAYER_WON_ROUND);
         //powerComparison will be 1, 0, or -1 depending on which Card has more power. This will return a String saying who won based on that power and increment the wins of the winner.
         switch(powerComparison) {
             case 1:     this.incrementPlayerOneWins();
-                        return "Player One Wins";
+                        return result;
             case 0:     this.incrementPlayerOneWins();
                         this.incrementPlayerTwoWins();
-                        return "Draw";
+                        return result = new RipoffMessage(RipoffMessage.DRAW_ROUND);
             case -1:    this.incrementPlayerTwoWins();
-                        return "AI Wins";
+                        return result = new RipoffMessage(RipoffMessage.AI_WON_ROUND);
         }
-        //If powerComparison was not 1, -1, or 0, something went wrong so the String "Error" is returned.
-        System.out.println("determineRoundWinner has failed and the returned String is Error.");
-        return "Error";
+        //If powerComparison was not 1, -1, or 0, something went wrong so the Messgae "Error" is returned.
+        System.out.println("determineRoundWinner has failed and the returned Meessage is Error.");
+        return result = new RipoffMessage(RipoffMessage.ERROR);
     }
 
     /**
