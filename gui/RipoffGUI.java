@@ -10,6 +10,7 @@ import model.Card;
 import model.Deck;
 import model.Contender;
 import games.SimpleGameController;
+import games.PlayerVsComputerController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -40,6 +41,7 @@ public final class RipoffGUI extends RipoffBase {
 
     // Track the primary stage so we can add scenes to it.
     private final Stage primaryStage;
+    protected PlayerVsComputerController pvc;
 
     public RipoffGUI(Stage _primaryStage){
         this.primaryStage = _primaryStage;
@@ -263,9 +265,9 @@ public final class RipoffGUI extends RipoffBase {
         Label lblCard2 = new Label(Integer.toString(card2.getPower()));
         Label lblCard3 = new Label(Integer.toString(card3.getPower()));
 
-        Button btnCard1 = new Button("Play Card 1");
-        Button btnCard2 = new Button("Play Card 2");
-        Button btnCard3 = new Button("Play Card 3");
+        Button btnCard1 = this.addButton("Play Card 1", pvc.playCard(card1));
+        Button btnCard2 = this.addButton("Play Card 2", pvc.playCard(card2));
+        Button btnCard3 = this.addButton("Play Card 3", pvc.playCard(card3));
 
         Button btnExit = this.addButton("Quit like a loser", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnPlayAgain = this.addButton("Restart Game", new RipoffMessage(RipoffMessage.PLAY_PANEL));
