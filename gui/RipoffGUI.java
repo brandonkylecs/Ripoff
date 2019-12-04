@@ -28,6 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.ComputerOpponent;
 import model.GameBoardAI;
 import model.Player;
 
@@ -234,7 +235,7 @@ public final class RipoffGUI extends RipoffBase {
 
     private Scene buildPlayPanel(){
         Contender player = new Contender();
-        Contender ai = new Contender();
+        ComputerOpponent ai = new ComputerOpponent();
         GameBoardAI gb = new GameBoardAI();
         /*Deck aiDeck = new Deck();
         aiDeck.fillDeck();
@@ -250,12 +251,13 @@ public final class RipoffGUI extends RipoffBase {
         playerDeck.fillDeck();
         playerDeck.shuffleCards();*/
         ArrayList<Card> cards = new ArrayList();
+
         //For right now, draw three random cards.
         cards = gb.getPlayerOneChoices();
 
         Card card1 = cards.get(0);
         Card card2 = cards.get(1);
-        Card card3 = cards.get(2); 
+        Card card3 = cards.get(2);
 
         Label lblCard1 = new Label(Integer.toString(card1.getPower()));
         Label lblCard2 = new Label(Integer.toString(card2.getPower()));
