@@ -24,7 +24,7 @@ public class PlayerVsComputerController {
     /*
      * This method takes the card the player chose determines the winner.
      * @param Card _playerCard
-     * @returns RipoffMessage winner
+     * @returns RipoffMessage winner  -- Needs to return this for the outcome to work with the button
      */
     public RipoffMessage playCard(Card _playerCard){
         RipoffMessage winner = new RipoffMessage(RipoffMessage.PLAYER_WON_ROUND);
