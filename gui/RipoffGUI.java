@@ -43,7 +43,6 @@ public final class RipoffGUI extends RipoffBase {
     // Track the primary stage so we can add scenes to it.
     private final Stage primaryStage;
     protected PlayerVsComputerController pvc;
-    protected DBTranslator db;
 
     public RipoffGUI(Stage _primaryStage){
         this.primaryStage = _primaryStage;
@@ -87,7 +86,7 @@ public final class RipoffGUI extends RipoffBase {
     /*
     * Loads the registration panel.
     */
-    public void loadRegisterPanel(){
+    public void loadRegisterPanel() throws IOException{
         System.out.println("Loading Registration Panel");
         Scene registerScene = this.buildRegisterPanel();
         this.primaryStage.setTitle("Registration");
@@ -179,7 +178,7 @@ public final class RipoffGUI extends RipoffBase {
     * Helper funciton for building the register panel. Creates the buttons and returns
     * a scene to be added to the stage.
     */
-    private Scene buildRegisterPanel(){
+    private Scene buildRegisterPanel() throws IOException{
         Label lblUsername = new Label("Enter your username.");
         TextField tfUsername = new TextField();
         Label lblFirstname = new Label("Enter your first name.  Not needed if you've already got an account.");
@@ -191,9 +190,17 @@ public final class RipoffGUI extends RipoffBase {
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Player player = new Player();
         Button btnRegister = new Button("Register");
-        db.createUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText());
-        RipoffEvent ripEvent = new RipoffEvent(this, new RipoffMessage(RipoffMessage.PLAYER_PANEL));
-        fireEvent(ripEvent);
+
+        btnRegister.setOnAction((ActionEvent e) -> {
+            try {
+                // Fire a custom event.
+                DBTranslator.createUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText());
+            } catch (IOException ex) {
+                Logger.getLogger(RipoffGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                RipoffEvent ripEvent = new RipoffEvent(this, new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+                fireEvent(ripEvent);
+        });
 
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");

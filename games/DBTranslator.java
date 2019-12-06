@@ -1,6 +1,8 @@
 package games;
 
 import events.RipoffMessage;
+import java.io.IOException;
+import model.Player;
 
 /**
  *
@@ -11,9 +13,9 @@ public class DBTranslator {
     /*
     * This method collects the information necessary for creating a user and passes it to the respective method
     */
-    public RipoffMessage createUser(String _username, String _firstName, String _password){
+    public static RipoffMessage createUser(String _username, String _firstName, String _password) throws IOException{
         String[] userInfo = {_username, _firstName, _password};
-        // Send information to the model.
-        return new RipoffMessage(RipoffMessage.EXIT_PANEL);
+        Player player = new Player();
+        return player.registerNewUser(userInfo);
     }
 }

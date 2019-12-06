@@ -9,6 +9,7 @@ import games.SimpleGameController;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 /**
  *
@@ -45,8 +46,7 @@ public class Player extends RipoffBase {
         System.out.println(currentPath + "\\src\\players\\users.txt");
 
         PrintWriter write = new PrintWriter(currentPath + "/src/players/users.txt", "UTF-8");
-        //write.println("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password);
-        write.println(_userInfo);
+        write.println(Arrays.toString(_userInfo));
         write.close();
 
         // Return to main panel after logging user in.
