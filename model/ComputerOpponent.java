@@ -2,7 +2,7 @@ package com.stripe.ripoff.model;
 
 /**
  *
- * @author Brandon Kyle Last Updated 11/18/2019
+ * @author Brandon Kyle Last Updated 12/01/2019
  */
 import java.util.ArrayList;
 
@@ -11,8 +11,8 @@ public class ComputerOpponent extends Contender {
     private int advantagePoints;
     /**
      * This is the constructor method that takes the Deck that the AI opponent will use as a parameter.
-     * 
-     * @param _usedDeck 
+     *
+     * @param _usedDeck
      */
     public ComputerOpponent(Deck _usedDeck) {
         this.setDeck(_usedDeck);
@@ -20,7 +20,7 @@ public class ComputerOpponent extends Contender {
     }
 
     public ComputerOpponent() {
-        System.out.println("ComputerOpponent module loaded.");
+        System.out.println("ComputerOpponent module loaded without Cards.");
     }
 
     /**
@@ -32,7 +32,7 @@ public class ComputerOpponent extends Contender {
      * @param _pickedCards
      * @return
      */
-    @Override
+    //@Override
     public Card queryForCard(int _pickedCards) {
         System.out.println("The AI is being queried for its card.");
         if(_pickedCards > this.myDeck.getSize()) {

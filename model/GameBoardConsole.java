@@ -1,5 +1,5 @@
 
-package games;
+package model;
 
 import java.util.ArrayList;
 import com.stripe.ripoff.model.Card;
@@ -9,14 +9,14 @@ import com.stripe.ripoff.model.ComputerOpponent;
 
 /**
  *
- * @author Brandon Kyle Last Updated: 10/08/2019
+ * @author Brandon Kyle Last Updated: 11/25/2019
  */
 import java.util.Scanner;
-public class GameControllerConsole {
+public class GameBoardConsole {
 
     private Scanner readInput = new Scanner(System.in);
 
-    public GameControllerConsole() {
+    public GameBoardConsole() {
     }
 
     public void runGame(int _numDrawn) {
@@ -29,17 +29,17 @@ public class GameControllerConsole {
         playerOne.setDeck(difficultySelectHuman());
         playerTwo.setDeck(difficultySelectAI());
         while(oneWins < 3 && twoWins < 3 && !draw) {
-            int result = roundResult(playerOne, playerTwo, _numDrawn);
+            String result = roundResult(playerOne, playerTwo, _numDrawn);
             switch (result) {
-                case 1:
+                case "FIRST CARD":
                     oneWins = oneWins + 1;
                     System.out.println("You win this round. You have score " + oneWins + ". Bob has score " + twoWins + ".");
                     break;
-                case -1:
+                case "SECOND CARD":
                     twoWins = twoWins + 1;
                     System.out.println("You lose this round. You have score " + oneWins + ". Bob has score " + twoWins + ".");
                     break;
-                case 0:
+                case "DRAW":
                     System.out.println("The cards had the same power, therefore no points are awarded. You have score " + oneWins + ". Bob has score " + twoWins + ".");
                     break;
             }
@@ -63,7 +63,7 @@ public class GameControllerConsole {
      * @param _numDrawn
      * @return
      */
-    private int roundResult(Contender _human, ComputerOpponent _computer, int _numDrawn) {
+    private String roundResult(Contender _human, ComputerOpponent _computer, int _numDrawn) {
         System.out.println("You currently have the cards: \n" + _human.getDeck());
         System.out.println("Drawing cards...");
         Card oneCard = this.askForCard(_human, _numDrawn);

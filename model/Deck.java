@@ -3,7 +3,7 @@ package com.stripe.ripoff.model;
 /**
  * This class contains the Deck object which will represent the card deck in the game. In the game, it will contain all of a user's usable cards.
  *
- * @author Brandon Kyle Last Updated: 10/06/2019
+ * @author Brandon Kyle, Tyler Last Updated: 10/06/2019
  */
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Deck {
     }
 
     public Deck() {
-        System.out.println("Deck module loaded.");
+        System.out.println("Deck module loaded without Cards.");
     }
 
     /**
@@ -149,6 +149,36 @@ public class Deck {
         for(int count=0; count<originalSize; count++) {
             this.deckCards.add(_setToAdd.remove(0));
         }
+    }
+
+    /**
+     * Fills deck with base Cards, will replace any Cards that are currently in the Deck.
+     *
+     * @param _deck
+     */
+    public void fillDeck(){
+        Card testCardOne = new Card("Card One", "01", 1);
+        Card testCardTwo = new Card("Card Two", "02", 2);
+        Card testCardThree = new Card("Card Three", "03", 3);
+        Card testCardFour = new Card("Card Four", "04", 4);
+        Card testCardFive = new Card("Card Five", "05", 5);
+        Card testCardSix = new Card("Card Six", "06", 6);
+        Card testCardSeven = new Card("Card Seven", "07", 7);
+        Card testCardEight = new Card("Card Eight", "08", 8);
+        Card testCardNine = new Card("Card Nine", "09", 9);
+        Card testCardTen = new Card("Card Ten", "10", 10);
+        ArrayList<Card> filledDeck = new ArrayList<Card>();
+        filledDeck.add(testCardOne);
+        filledDeck.add(testCardTwo);
+        filledDeck.add(testCardThree);
+        filledDeck.add(testCardFour);
+        filledDeck.add(testCardFive);
+        filledDeck.add(testCardSix);
+        filledDeck.add(testCardSeven);
+        filledDeck.add(testCardEight);
+        filledDeck.add(testCardNine);
+        filledDeck.add(testCardTen);
+        this.setDeckCards(filledDeck);
     }
 
     /**

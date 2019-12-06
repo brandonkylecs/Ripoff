@@ -3,9 +3,8 @@ package com.stripe.ripoff.model;
 /**
  * This class performs tests to ensure that the ComputerOpponent class is working properly and lets the user play against an AI opponent in the console.
  *
- * @author Brandon Kyle Last Updated: 10/06/2019
+ * @author Brandon Kyle Last Updated: 11/25/2019
  */
-import games.GameControllerConsole;
 public class AITester {
 
     /**
@@ -14,7 +13,7 @@ public class AITester {
      * @param args
      */
     public static void main(String args[]) {
-        GameControllerConsole gameLogic = new GameControllerConsole();
+        GameBoardConsole gameLogic = new GameBoardConsole();
         gameLogic.runGame(2);
     }
 

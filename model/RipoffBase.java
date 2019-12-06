@@ -2,7 +2,7 @@ package com.stripe.ripoff.model;
 /**
  * This is the base class for any object that will throw or catch events being
  * fired.
- * @author Tyler Wallschleger
+ * @author Ike Quigley
  */
 
 import java.util.ArrayList;
