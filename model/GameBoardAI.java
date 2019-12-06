@@ -4,7 +4,7 @@ package model;
 /**
  * This class contains the logic for the game that will be used in RipoffGUI when the user selects to play against an AI opponent.
  *
- * @author Brandon Kyle, Last Updated 12/01/2019
+ * @author Brandon Kyle, Last Updated 12/05/2019
  */
 
 import events.RipoffMessage;
@@ -71,17 +71,17 @@ public class GameBoardAI {
      * @return RipoffMessage
      */
     public RipoffMessage determineRoundWinner(Card _playerCard, Card _aiCard) {
-        int powerComparison = _playerCard.comparePower(_aiCard);
+        String powerComparison = _playerCard.comparePower(_aiCard);
         RipoffMessage result = new RipoffMessage(RipoffMessage.PLAYER_WON_ROUND);
         //powerComparison will be 1, 0, or -1 depending on which Card has more power. This will return a String saying who won based on that power and increment the wins of the winner.
         switch(powerComparison) {
-            case 1:     this.incrementPlayerOneWins();
-                        return result;
-            case 0:     this.incrementPlayerOneWins();
-                        this.incrementPlayerTwoWins();
-                        return result = new RipoffMessage(RipoffMessage.DRAW_ROUND);
-            case -1:    this.incrementPlayerTwoWins();
-                        return result = new RipoffMessage(RipoffMessage.AI_WON_ROUND);
+            case "FIRST CARD":  this.incrementPlayerOneWins();
+                                return result;
+            case "DRAW":        this.incrementPlayerOneWins();
+                                this.incrementPlayerTwoWins();
+                                return result = new RipoffMessage(RipoffMessage.DRAW_ROUND);
+            case "SECOND CARD": this.incrementPlayerTwoWins();
+                                return result = new RipoffMessage(RipoffMessage.AI_WON_ROUND);
         }
         //If powerComparison was not 1, -1, or 0, something went wrong so the Messgae "Error" is returned.
         System.out.println("determineRoundWinner has failed and the returned Meessage is Error.");
