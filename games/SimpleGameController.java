@@ -13,6 +13,7 @@ import model.Game;
 import model.Register;
 import model.Market;
 import model.Play;
+import model.GameBoardAI;
 import db.MySQLConnector;
 import gui.RipoffGUI;
 import javafx.stage.Stage;
@@ -30,6 +31,7 @@ public class SimpleGameController implements ListenerInterface {
     protected RipoffGUI gui;
     protected MySQLConnector sql;
     protected RipoffBase activeModule = null;
+    protected GameBoardAI gbAI;
 
     SimpleGameController(Stage primaryStage) {
         // Initialize the GUI.
@@ -105,6 +107,10 @@ public class SimpleGameController implements ListenerInterface {
         // Register Active Module as listener.
         this.ripoffPanelListener(new Play());
     }
+    
+    /*
+    * When the player plays a card, get the AI card and compare them to see who won the round.0
+    */
 
    /*
     * Given a module, this method registers that module as the active module. Also

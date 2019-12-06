@@ -5,6 +5,7 @@ package gui;
 
 import events.RipoffEvent;
 import events.RipoffMessage;
+import games.DBTranslator;
 import model.RipoffBase;
 import model.Card;
 import model.Deck;
@@ -42,6 +43,7 @@ public final class RipoffGUI extends RipoffBase {
     // Track the primary stage so we can add scenes to it.
     private final Stage primaryStage;
     protected PlayerVsComputerController pvc;
+    protected DBTranslator db;
 
     public RipoffGUI(Stage _primaryStage){
         this.primaryStage = _primaryStage;
@@ -189,18 +191,9 @@ public final class RipoffGUI extends RipoffBase {
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Player player = new Player();
         Button btnRegister = new Button("Register");
-
-        btnRegister.setOnAction((ActionEvent e) -> {
-            // Try catch is for IOException.
-            try {
-                // Fire a custom event.
-                player.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText());
-                RipoffEvent ripEvent = new RipoffEvent(this, new RipoffMessage(RipoffMessage.PLAYER_PANEL));
-                fireEvent(ripEvent);
-            } catch (IOException ex) {
-                Logger.getLogger(RipoffGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        db.createUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText());
+        RipoffEvent ripEvent = new RipoffEvent(this, new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+        fireEvent(ripEvent);
 
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));
         VBox vbox = this.addVBox("Register now for free! Trial ends after 5 minutes!");

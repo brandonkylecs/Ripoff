@@ -4,7 +4,7 @@ package model;
 /**
  * This class contains the logic for the game that will be used in RipoffGUI when the user selects to play against an AI opponent.
  *
- * @author Brandon Kyle, Last Updated 12/01/2019
+ * @author Brandon Kyle, Tyler Wallschleger Last Updated 12/06/2019
  */
 
 import events.RipoffMessage;
@@ -76,16 +76,33 @@ public class GameBoardAI {
         //powerComparison will be 1, 0, or -1 depending on which Card has more power. This will return a String saying who won based on that power and increment the wins of the winner.
         switch(powerComparison) {
             case 1:     this.incrementPlayerOneWins();
-                        return result;
             case 0:     this.incrementPlayerOneWins();
                         this.incrementPlayerTwoWins();
-                        return result = new RipoffMessage(RipoffMessage.DRAW_ROUND);
+                        result = new RipoffMessage(RipoffMessage.DRAW_ROUND);
             case -1:    this.incrementPlayerTwoWins();
-                        return result = new RipoffMessage(RipoffMessage.AI_WON_ROUND);
+                        result = new RipoffMessage(RipoffMessage.AI_WON_ROUND);
         }
+        result = this.determineGameWinner(result);
+        return result;
         //If powerComparison was not 1, -1, or 0, something went wrong so the Messgae "Error" is returned.
-        System.out.println("determineRoundWinner has failed and the returned Meessage is Error.");
-        return result = new RipoffMessage(RipoffMessage.ERROR);
+        //System.out.println("determineRoundWinner has failed and the returned Meessage is Error.");
+        //return result = new RipoffMessage(RipoffMessage.ERROR);
+    }
+
+    /*
+    * This method checks to see if either player has won the game yet.
+    *
+    * @param _roundResult
+    * @return RipoffMessage
+    */
+    public RipoffMessage determineGameWinner(RipoffMessage _roundResult){
+        if(this.getPlayerOneWins() == 3) {
+            return new RipoffMessage(RipoffMessage.PLAYER_WON_GAME);
+        }
+        else if (this.getPlayerTwoWins() == 3){
+            return new RipoffMessage(RipoffMessage.AI_WON_GAME);
+        }
+        return _roundResult;
     }
 
     /**
