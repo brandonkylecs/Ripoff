@@ -1,5 +1,7 @@
 package model;
 
+import events.RipoffMessage;
+
 /**
  * This class contains the Card object which will be used to represent the cards in the game. All cards will have a name, ID, and power.
  *
@@ -34,18 +36,18 @@ public class Card {
      * @param _compareCard
      * @return
      */
-    public String comparePower(Card _compareCard) {
+    public int comparePower(Card _compareCard) {
         //ERROR will be returned 
         if(this.cardPower < 1 || _compareCard.getPower() < 1) {
-            return "ERROR";
+            return RipoffMessage.ERROR;
         }
         if(this.cardPower > _compareCard.getPower()) {
-            return "FIRST CARD";
+            return RipoffMessage.PLAYER_WON_ROUND;
         }
         if(this.cardPower < _compareCard.getPower()) {
-            return "SECOND CARD";
+            return RipoffMessage.AI_WON_ROUND;
         }
-        return "DRAW";
+        return RipoffMessage.DRAW_ROUND;
     }
 
 // ================= GETTERS ==========================
