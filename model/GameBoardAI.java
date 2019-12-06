@@ -75,12 +75,16 @@ public class GameBoardAI {
         RipoffMessage result = new RipoffMessage(RipoffMessage.PLAYER_WON_ROUND);
         //powerComparison will be 1, 0, or -1 depending on which Card has more power. This will return a String saying who won based on that power and increment the wins of the winner.
         switch(powerComparison) {
-            case 1:     this.incrementPlayerOneWins();
-            case 0:     this.incrementPlayerOneWins();
-                        this.incrementPlayerTwoWins();
-                        result = new RipoffMessage(RipoffMessage.DRAW_ROUND);
-            case -1:    this.incrementPlayerTwoWins();
-                        result = new RipoffMessage(RipoffMessage.AI_WON_ROUND);
+            case RipoffMessage.PLAYER_WON_ROUND:
+                this.incrementPlayerOneWins();
+            case RipoffMessage.DRAW_ROUND:
+                this.incrementPlayerOneWins();
+                this.incrementPlayerTwoWins();
+                result = new RipoffMessage(RipoffMessage.DRAW_ROUND);
+            case RipoffMessage.AI_WON_ROUND:
+                this.incrementPlayerTwoWins();
+                result = new RipoffMessage(RipoffMessage.AI_WON_ROUND);
+
         }
         result = this.determineGameWinner(result);
         return result;

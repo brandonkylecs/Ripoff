@@ -3,7 +3,7 @@ package model;
 /**
  * This class contains the Card object which will be used to represent the cards in the game. All cards will have a name, ID, and power.
  *
- * @author Brandon Kyle Last Updated: 10/1/2019
+ * @author Brandon Kyle Last Updated: 12/05/2019
  */
 public class Card {
 
@@ -28,20 +28,24 @@ public class Card {
         return "This card's name is: " + this.cardName + ". This card's ID is " + this.cardId + ". This card's power is " + this.cardPower + ".";
     }
     /**
-     * This method will compare the power of two Cards. If this Card has more power, it will return 1. If the parameter compareCard has more power, it will return -1. If they have equal
-     * power, it will return 0.
+     * This method will compare the power of two Cards. If this Card has more power, it will return FIRST CARD. If the parameter compareCard has more power, it will return SECOND CARD. If they have equal
+     * power, it will return DRAW. If the card's power is less than 1, ERROR is returned, since no Card will have power less than 1 unless something has gone wrong.
      *
      * @param _compareCard
      * @return
      */
-    public int comparePower(Card _compareCard) {
+    public String comparePower(Card _compareCard) {
+        //ERROR will be returned 
+        if(this.cardPower < 1 || _compareCard.getPower() < 1) {
+            return "ERROR";
+        }
         if(this.cardPower > _compareCard.getPower()) {
-            return 1;
+            return "FIRST CARD";
         }
         if(this.cardPower < _compareCard.getPower()) {
-            return -1;
+            return "SECOND CARD";
         }
-        return 0;
+        return "DRAW";
     }
 
 // ================= GETTERS ==========================
