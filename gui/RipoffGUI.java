@@ -5,6 +5,7 @@ package gui;
 
 import events.RipoffEvent;
 import events.RipoffMessage;
+import games.DBTranslator;
 import model.RipoffBase;
 import model.Card;
 import model.Deck;
@@ -85,7 +86,7 @@ public final class RipoffGUI extends RipoffBase {
     /*
     * Loads the registration panel.
     */
-    public void loadRegisterPanel(){
+    public void loadRegisterPanel() throws IOException{
         System.out.println("Loading Registration Panel");
         Scene registerScene = this.buildRegisterPanel();
         this.primaryStage.setTitle("Registration");
@@ -177,7 +178,7 @@ public final class RipoffGUI extends RipoffBase {
     * Helper funciton for building the register panel. Creates the buttons and returns
     * a scene to be added to the stage.
     */
-    private Scene buildRegisterPanel(){
+    private Scene buildRegisterPanel() throws IOException{
         Label lblUsername = new Label("Enter your username.");
         TextField tfUsername = new TextField();
         Label lblFirstname = new Label("Enter your first name.  Not needed if you've already got an account.");
@@ -191,15 +192,14 @@ public final class RipoffGUI extends RipoffBase {
         Button btnRegister = new Button("Register");
 
         btnRegister.setOnAction((ActionEvent e) -> {
-            // Try catch is for IOException.
             try {
                 // Fire a custom event.
-                player.registerNewUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText());
-                RipoffEvent ripEvent = new RipoffEvent(this, new RipoffMessage(RipoffMessage.PLAYER_PANEL));
-                fireEvent(ripEvent);
+                DBTranslator.createUser(tfUsername.getText(), tfFirstname.getText(), tfPassword.getText());
             } catch (IOException ex) {
                 Logger.getLogger(RipoffGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+                RipoffEvent ripEvent = new RipoffEvent(this, new RipoffMessage(RipoffMessage.PLAYER_PANEL));
+                fireEvent(ripEvent);
         });
 
         Button btnSignIn = this.addButton("Sign in", new RipoffMessage(RipoffMessage.PLAYER_PANEL));

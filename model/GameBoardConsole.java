@@ -69,7 +69,8 @@ public class GameBoardConsole {
         Card oneCard = this.askForCard(_human, _numDrawn);
         System.out.println("The opponent is drawing their card...");
         Card twoCard = _computer.queryForCard(_numDrawn);
-        return oneCard.comparePower(twoCard);
+        return "NOT USING THIS";
+        //return oneCard.comparePower(twoCard);
     }
 
     /**
