@@ -1,4 +1,4 @@
-package com.stripe.ripoff.model;
+package model;
 
 /**
  * This class contains the Card object which will be used to represent the cards in the game. All cards will have a name, ID, and power.

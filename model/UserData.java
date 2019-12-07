@@ -1,4 +1,4 @@
-package com.stripe.ripoff.model;
+package model;
 
 /**
  * Defines a user's data like their name, win/loss, password, id.

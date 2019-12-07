@@ -2,10 +2,10 @@
 package model;
 
 import java.util.ArrayList;
-import com.stripe.ripoff.model.Card;
-import com.stripe.ripoff.model.Deck;
-import com.stripe.ripoff.model.Contender;
-import com.stripe.ripoff.model.ComputerOpponent;
+import model.Card;
+import model.Deck;
+import model.Contender;
+import model.ComputerOpponent;
 
 /**
  *

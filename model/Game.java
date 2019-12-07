@@ -1,7 +1,7 @@
 /*
  * The Game object for creating new games.
  */
-package com.stripe.ripoff.model;
+package model;
 
 import events.RipoffEvent;
 import events.RipoffMessage;

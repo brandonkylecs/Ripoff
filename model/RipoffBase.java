@@ -1,4 +1,4 @@
-package com.stripe.ripoff.model;
+package model;
 /**
  * This is the base class for any object that will throw or catch events being
  * fired.

@@ -1,4 +1,4 @@
-package com.stripe.ripoff.model;
+package model;
 
 /**
  * This class contains the Deck object which will represent the card deck in the game. In the game, it will contain all of a user's usable cards.
