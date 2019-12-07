@@ -21,6 +21,8 @@ import events.RipoffEvent;
 import events.RipoffMessage;
 import model.Player;
 import events.ListenerInterface;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author tnwallsc
@@ -74,11 +76,11 @@ public class SimpleGameController implements ListenerInterface {
         // Register Active Module as listener.
         this.ripoffPanelListener(new Player());
     }
+
     /*
     * Loads the market panel to the main screen and registers the Market
     * object.
     */
-
     private void marketPanel(){
         // Load the GUI
         this.gui.loadMarketPanel();
@@ -90,7 +92,7 @@ public class SimpleGameController implements ListenerInterface {
     * Loads the register panel to the main screen and registers the Register
     * object.
     */
-    private void registerPanel(){
+    private void registerPanel() throws IOException{
         //Load the GUI
         this.gui.loadRegisterPanel();
         // Register Active Module as listener.
@@ -109,9 +111,12 @@ public class SimpleGameController implements ListenerInterface {
     }
     
     /*
-    * When the player plays a card, get the AI card and compare them to see who won the round.0
+    * When the AI wins, load the view
     */
-
+    private void aiWinPanel(){
+        this.gui.loadAiPanel();
+    }
+    
    /*
     * Given a module, this method registers that module as the active module. Also
     * adds the given module as a listener to the GUI.
@@ -138,7 +143,13 @@ public class SimpleGameController implements ListenerInterface {
                 break;
             case RipoffMessage.REGISTER_PANEL:
                 System.out.println("Controller Responding to Register Panel Event.");
+        {
+            try {
                 this.registerPanel();
+            } catch (IOException ex) {
+                Logger.getLogger(SimpleGameController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
             case RipoffMessage.MARKET_PANEL:
                 System.out.println("Controller Responding to Market Panel Event.");
@@ -159,6 +170,9 @@ public class SimpleGameController implements ListenerInterface {
             case RipoffMessage.CREATE_PROFILE:
                 System.out.println("Creating profile...");
                 break;
+            case RipoffMessage.AI_WON_ROUND:
+                System.out.println("AI won the game.");
+                this.aiWinPanel();
             default:
                 System.out.println("Ignoring Simple Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
                 break;
