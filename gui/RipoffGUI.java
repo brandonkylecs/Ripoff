@@ -115,6 +115,17 @@ public final class RipoffGUI extends RipoffBase {
         this.primaryStage.setScene(playScene);
         this.primaryStage.show();
     }
+    
+    /*
+    * Loads the AI won panel.
+    */
+    public void loadAiPanel(){
+        System.out.println("Loading AI Panel");
+        Scene playScene = this.buildAiPanel();
+        this.primaryStage.setTitle("Ripoff AI Game");
+        this.primaryStage.setScene(playScene);
+        this.primaryStage.show();
+    }
 
    /*
     * Helper function for building the main panel. Creates the buttons and returns
@@ -236,25 +247,10 @@ public final class RipoffGUI extends RipoffBase {
     }
 
     private Scene buildPlayPanel(){
-        Contender player = new Contender();
-        ComputerOpponent ai = new ComputerOpponent();
         GameBoardAI gb = new GameBoardAI();
-        /*Deck aiDeck = new Deck();
-        aiDeck.fillDeck();
-        aiDeck.shuffleCards();
-        ArrayList<Card> aiCards = new ArrayList();
-        //For right now, draw three random cards.
-        aiCards = aiDeck.drawCards(3);
-        Card aiCard1 = aiCards.get(0);
-        Card aiCard2 = aiCards.get(1);
-        Card aiCard3 = aiCards.get(2);
-
-        Deck playerDeck = new Deck();
-        playerDeck.fillDeck();
-        playerDeck.shuffleCards();*/
         ArrayList<Card> cards = new ArrayList();
 
-        //For right now, draw three random cards.
+        //Draw three random cards.
         cards = gb.getPlayerOneChoices();
 
         Card card1 = cards.get(0);
@@ -264,11 +260,12 @@ public final class RipoffGUI extends RipoffBase {
         Label lblCard1 = new Label(Integer.toString(card1.getPower()));
         Label lblCard2 = new Label(Integer.toString(card2.getPower()));
         Label lblCard3 = new Label(Integer.toString(card3.getPower()));
-
-        Button btnCard1 = this.addButton("Play Card 1", pvc.playCard(card1));
-        Button btnCard2 = this.addButton("Play Card 2", pvc.playCard(card2));
-        Button btnCard3 = this.addButton("Play Card 3", pvc.playCard(card3));
-
+        
+        Card aiCard = gb.aiPickCard();
+        Button btnCard1 = this.addButton("Play Card 1", gb.determineRoundWinner(card1, aiCard));
+        Button btnCard2 = this.addButton("Play Card 2", gb.determineRoundWinner(card2, aiCard));
+        Button btnCard3 = this.addButton("Play Card 3", gb.determineRoundWinner(card3, aiCard));
+        
         Button btnExit = this.addButton("Quit like a loser", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         Button btnPlayAgain = this.addButton("Restart Game", new RipoffMessage(RipoffMessage.PLAY_PANEL));
         GridPane grid = new GridPane();
@@ -283,6 +280,19 @@ public final class RipoffGUI extends RipoffBase {
         grid.add(btnExit, 0, 4);
         grid.add(btnPlayAgain, 1, 4);
         Scene scene = new Scene(grid, 600, 400);
+        return scene;
+    }
+    
+    private Scene buildAiPanel(){
+        Label label = new Label("The AI won.  Skynet will take over in approximately .596 seconds.");
+        GridPane grid = new GridPane();
+        Button btnExit = this.addButton("Quit", new RipoffMessage(RipoffMessage.EXIT_PANEL));
+        Button btnPlayAgain = this.addButton("Restart Game", new RipoffMessage(RipoffMessage.PLAY_PANEL));
+        
+        grid.add(label, 20, 20);
+        grid.add(btnExit, 0, 40);
+        grid.add(btnPlayAgain, 40, 40);
+        Scene scene = new Scene(grid, 500, 100);
         return scene;
     }
 

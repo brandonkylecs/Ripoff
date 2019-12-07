@@ -37,6 +37,10 @@ public class Card {
      * @return
      */
     public int comparePower(Card _compareCard) {
+        System.out.println("");
+        System.out.println("PLAYER CARD " + this.cardPower);
+        System.out.println("AI CARD: " + _compareCard.getPower());
+        System.out.println("");
         //ERROR will be returned 
         if(this.cardPower < 1 || _compareCard.getPower() < 1) {
             return RipoffMessage.ERROR;

@@ -41,6 +41,15 @@ public class Player extends RipoffBase {
      * @param _userInfo
      */
     public RipoffMessage registerNewUser(String[] _userInfo) throws IOException{
+        if(_userInfo[0].trim().equals("")){
+            return new RipoffMessage(RipoffMessage.MISSING_USERNAME);
+        }
+        else if(_userInfo[1].trim().equals("")){
+            return new RipoffMessage(RipoffMessage.MISSING_FIRSTNAME);
+        }
+        else if(_userInfo[2].trim().equals("")){
+            return new RipoffMessage(RipoffMessage.MISSING_PASSWORD);
+        }
         // TODO check for user already existing.
         String currentPath = System.getProperty("user.dir");
         System.out.println(currentPath + "\\src\\players\\users.txt");
