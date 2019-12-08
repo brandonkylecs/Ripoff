@@ -1,6 +1,7 @@
 /**
  * This class connects to the Stripe API and does stuff.
- * @author Dakota Simpkins Last Updated: 12/7/2019
+ * @author Dakota Simpkins
+ * Last Updated: 12/8/2019
  */
 package api;
 
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
 
 public class StripeAPI {
 
-    //Used for getting amount in balance
+    //Used for getting amount in balance.
     private static int FIRST_POSITION = 0;
 
     public StripeAPI() {
@@ -22,7 +23,7 @@ public class StripeAPI {
     }
 
     /*
-     *Creates a customer object based on specific parameters
+     *Creates a customer object based on specific parameters.
      */
     protected Customer createCustomer(Map<String, Object> _params) {
         try {

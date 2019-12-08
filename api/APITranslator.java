@@ -1,7 +1,8 @@
 /**
  *
  * This class translates the given API for the rest of the program to connect to.
- * @author Dakota Simpkins Last Updated: 12/7/2019
+ * @author Dakota Simpkins
+ * Last Updated: 12/8/2019
  */
 package api;
 
@@ -15,7 +16,7 @@ public class APITranslator {
     }
 
     /*
-     * Gets the balance amount from an account
+     * Gets the balance amount from an account.
      * @returns STRIPE.getBalance()
      */
     public static int getBal() {
@@ -23,7 +24,7 @@ public class APITranslator {
     }
 
     /*
-     * Charges an account a specified amount
+     * Charges an account a specified amount.
      */
     public static void chargeAccount(int _amount) {
         Charge charge = STRIPE.chargeAccount(_amount);

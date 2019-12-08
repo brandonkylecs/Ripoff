@@ -1,8 +1,9 @@
 package api;
 
 /**
- *
- * @author Dakoats
+ * This is a temporary class to test API functionality.
+ * @author Dakota Simpkins
+ * Last Updated: 12/8/2019
  */
 public class APITester {
 
