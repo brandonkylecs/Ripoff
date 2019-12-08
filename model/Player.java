@@ -9,6 +9,7 @@ import games.SimpleGameController;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 /**
  *
@@ -37,17 +38,24 @@ public class Player extends RipoffBase {
 
     /*
      * Saves the user data for when they try to register.  Checks to see if the user exists already.
-     * @param _username
-     * @param _firstName
-     * @param _password
+     * @param _userInfo
      */
-    public RipoffMessage registerNewUser(String _username, String _firstName, String _password) throws IOException{
+    public RipoffMessage registerNewUser(String[] _userInfo) throws IOException{
+        if(_userInfo[0].trim().equals("")){
+            return new RipoffMessage(RipoffMessage.MISSING_USERNAME);
+        }
+        else if(_userInfo[1].trim().equals("")){
+            return new RipoffMessage(RipoffMessage.MISSING_FIRSTNAME);
+        }
+        else if(_userInfo[2].trim().equals("")){
+            return new RipoffMessage(RipoffMessage.MISSING_PASSWORD);
+        }
         // TODO check for user already existing.
         String currentPath = System.getProperty("user.dir");
         System.out.println(currentPath + "\\src\\players\\users.txt");
 
         PrintWriter write = new PrintWriter(currentPath + "/src/players/users.txt", "UTF-8");
-        write.println("Username: " + _username + "\nFirstName: " + _firstName + "\nPassword: " + _password);
+        write.println(Arrays.toString(_userInfo));
         write.close();
 
         // Return to main panel after logging user in.

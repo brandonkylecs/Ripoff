@@ -26,6 +26,13 @@ public class RipoffMessage {
     public static final int SEND_MEMES = 20;
     public static final int CREATE_PROFILE = 30;
     public static final int CHECK_LOGIN = 31;
+    
+    /*
+    * Registration Messages;
+    */
+    public static final int MISSING_USERNAME = 32;
+    public static final int MISSING_FIRSTNAME = 33;
+    public static final int MISSING_PASSWORD = 34;
 
     /*
     * Game Messages.
@@ -38,6 +45,7 @@ public class RipoffMessage {
     public static final int DRAW_ROUND = 402;
     public static final int PLAYER_WON_GAME = 403;
     public static final int AI_WON_GAME = 404;
+    public static final int NO_WINNER = 405;
     public static final int ERROR = 999;
 
     private final int _thismessage;
