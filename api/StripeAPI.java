@@ -1,6 +1,6 @@
 /**
  * This class connects to the Stripe API and does stuff.
- * @author Dakota Simpkins Last Updated: 12/6/2019
+ * @author Dakota Simpkins Last Updated: 12/7/2019
  */
 package api;
 
@@ -14,12 +14,15 @@ import java.util.logging.Logger;
 
 public class StripeAPI {
 
+    //Used for getting amount in balance
     private static int FIRST_POSITION = 0;
 
+    //Sets what Stripe connection it will be
     public StripeAPI() {
         Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
     }
 
+    //Creates a customer object based on specific parameters
     protected Customer createCustomer(Map<String, Object> _params) {
         try {
             Customer customer = Customer.create(_params);
@@ -30,6 +33,7 @@ public class StripeAPI {
         return null;
     }
 
+    //Returns balance amount of the stripe account as an integer
     protected int getBalance() {
         try {
             Balance bal = Balance.retrieve();
@@ -40,6 +44,7 @@ public class StripeAPI {
         return 0;
     }
 
+    //Makes a charge on the account, does not change balance if on test environment
     public Charge chargeAccount(int _amount) {
         try {
             Map<String, Object> params = new HashMap<>();
@@ -48,6 +53,7 @@ public class StripeAPI {
             params.put("source", "tok_visa");
             params.put("description","Charge for jenny.rosen@example.com");
             Charge charge = Charge.create(params);
+            return charge;
         } catch (StripeException ex) {
             Logger.getLogger(StripeAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
