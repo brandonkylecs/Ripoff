@@ -19,19 +19,17 @@ public class APITranslator {
      * Gets the balance amount from an account.
      * @returns STRIPE.getBalance()
      */
-    public static int getBal() {
+    public double getBal() {
         return STRIPE.getBalance();
     }
 
     /*
      * Charges an account a specified amount.
      */
-    public static void chargeAccount(int _amount) {
+    public void chargeAccount(int _amount) {
         Charge charge = STRIPE.chargeAccount(_amount);
         if(charge != null){
             System.out.println("Charge made successfully");
-            System.out.println();
-            System.out.println(charge);
         }
         else{
             System.out.println("Charge was not made");

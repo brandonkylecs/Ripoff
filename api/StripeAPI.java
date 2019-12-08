@@ -39,11 +39,11 @@ public class StripeAPI {
      * Returns balance amount of the stripe account as an integer.
      * @returns balAmount
      */
-    protected int getBalance() {
+    protected double getBalance() {
         try {
             Balance bal = Balance.retrieve();
-            int balAmount = bal.getAvailable().get(FIRST_POSITION).getAmount().intValue();
-            return balAmount;
+            double balAmount = bal.getAvailable().get(FIRST_POSITION).getAmount().doubleValue();
+            return balAmount/100;
         } catch (StripeException ex) {
             Logger.getLogger(StripeAPI.class.getName()).log(Level.SEVERE, null, ex);
         }

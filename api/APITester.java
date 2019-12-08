@@ -8,11 +8,13 @@ package api;
 public class APITester {
 
     public static void main(String args[]) {
-        System.out.println(APITranslator.getBal());
+        APITranslator api = new APITranslator();
+        double bal = api.getBal();
+        System.out.println(bal);
 
         //Amount is in cents (USD)
         int testAmount = 10000;
-        APITranslator.chargeAccount(testAmount);
-        System.out.println(APITranslator.getBal());
+        api.chargeAccount(testAmount);
+        System.out.println(bal);
     }
 }
