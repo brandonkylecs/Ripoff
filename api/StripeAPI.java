@@ -17,12 +17,13 @@ public class StripeAPI {
     //Used for getting amount in balance
     private static int FIRST_POSITION = 0;
 
-    //Sets what Stripe connection it will be
     public StripeAPI() {
         Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
     }
 
-    //Creates a customer object based on specific parameters
+    /*
+     *Creates a customer object based on specific parameters
+     */
     protected Customer createCustomer(Map<String, Object> _params) {
         try {
             Customer customer = Customer.create(_params);
@@ -33,18 +34,25 @@ public class StripeAPI {
         return null;
     }
 
-    //Returns balance amount of the stripe account as an integer
+    /*
+     * Returns balance amount of the stripe account as an integer.
+     * @returns balAmount
+     */
     protected int getBalance() {
         try {
             Balance bal = Balance.retrieve();
-            return bal.getAvailable().get(FIRST_POSITION).getAmount().intValue();
+            int balAmount = bal.getAvailable().get(FIRST_POSITION).getAmount().intValue();
+            return balAmount;
         } catch (StripeException ex) {
             Logger.getLogger(StripeAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
 
-    //Makes a charge on the account, does not change balance if on test environment
+    /*
+     * Makes a charge on the account, does not change balance if on test environment.
+     * @returns charge
+     */
     public Charge chargeAccount(int _amount) {
         try {
             Map<String, Object> params = new HashMap<>();
