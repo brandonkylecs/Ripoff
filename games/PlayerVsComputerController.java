@@ -20,7 +20,7 @@ public class PlayerVsComputerController {
     private GameBoardAI playSession = new GameBoardAI();
     public PlayerVsComputerController() {
     }
-    
+
     /*
      * This method takes the card the player chose determines the winner.
      * @param Card _playerCard

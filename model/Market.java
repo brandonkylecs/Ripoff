@@ -17,10 +17,10 @@ public class Market extends RipoffBase {
     }
 
     @Override
-    public void messageReceived(RipoffEvent event) {
-        switch (event.getMessage().getCode()){
+    public void messageReceived(RipoffEvent _event) {
+        switch (_event.getMessage().getCode()){
             default:
-                System.out.println("I don\'t know what you want me to do: " + event.getMessage().getCode());
+                System.out.println("I don\'t know what you want me to do: " + _event.getMessage().getCode());
                 break;
         }
     }
