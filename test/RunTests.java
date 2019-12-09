@@ -7,7 +7,7 @@ package test;
  */
 public class RunTests {
     public static void main(String args[]) {
-        CardTesterClass cardTester = new CardTesterClass();
+        TestMethods cardTester = new TestMethods();
         cardTester.runCardTests();
     }
 }
