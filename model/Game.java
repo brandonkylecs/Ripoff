@@ -38,8 +38,8 @@ public class Game extends RipoffBase {
     }
 
     @Override
-    public void messageReceived(RipoffEvent event) {
-        switch (event.getMessage().getCode()){
+    public void messageReceived(RipoffEvent _event) {
+        switch (_event.getMessage().getCode()){
             case RipoffMessage.HOW_TO_PLAY:
                 this.howToPlay();
                 break;
@@ -50,7 +50,7 @@ public class Game extends RipoffBase {
                 this.playHoomans();
                 break;
             default:
-                System.out.println("Ignoring Game Message Event. Irrelevant to Game: " + event.getMessage().getCode());
+                System.out.println("Ignoring Game Message Event. Irrelevant to Game: " + _event.getMessage().getCode());
                 break;
         }
     }

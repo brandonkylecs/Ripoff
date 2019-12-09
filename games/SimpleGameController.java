@@ -31,7 +31,6 @@ public class SimpleGameController implements ListenerInterface {
 
     // Add reference to all modules.
     protected RipoffGUI gui;
-    protected MySQLConnector sql;
     protected RipoffBase activeModule = null;
     protected GameBoardAI gbAI;
 
@@ -98,7 +97,7 @@ public class SimpleGameController implements ListenerInterface {
         // Register Active Module as listener.
         this.ripoffPanelListener(new Register());
     }
-    
+
     /*
     * Loads the play panel to the main screen and registers the Play
     * object.
@@ -109,30 +108,34 @@ public class SimpleGameController implements ListenerInterface {
         // Register Active Module as listener.
         this.ripoffPanelListener(new Play());
     }
-    
+
     /*
     * When the AI wins, load the view
     */
     private void aiWinPanel(){
         this.gui.loadAiPanel();
     }
-    
+
+    private void playerWinPanel(){
+        this.gui.loadPlayerWonPanel();
+    }
+
    /*
     * Given a module, this method registers that module as the active module. Also
     * adds the given module as a listener to the GUI.
     */
-    private void ripoffPanelListener(RipoffBase newModule) {
-        this.activeModule = newModule;
-        this.gui.addListener(newModule);
+    private void ripoffPanelListener(RipoffBase _newModule) {
+        this.activeModule = _newModule;
+        this.gui.addListener(_newModule);
     }
 
    /*
     * Respond to events that this module is listening for.
     */
     @Override
-    public void messageReceived(RipoffEvent event) {
+    public void messageReceived(RipoffEvent _event) {
         // We're only interested in a few particular events.
-        switch (event.getMessage().getCode()){
+        switch (_event.getMessage().getCode()){
             case RipoffMessage.GAME_PANEL:
                 System.out.println("Controller Responding to Game Panel Event.");
                 this.gamePanel();
@@ -173,8 +176,11 @@ public class SimpleGameController implements ListenerInterface {
             case RipoffMessage.AI_WON_ROUND:
                 System.out.println("AI won the game.");
                 this.aiWinPanel();
+            case RipoffMessage.PLAYER_WON_ROUND:
+                System.out.println("Player won the game.");
+                this.playerWinPanel();
             default:
-                System.out.println("Ignoring Simple Message Code as Irrelevant to Controller. " + event.getMessage().getCode());
+                System.out.println("Ignoring Simple Message Code as Irrelevant to Controller. " + _event.getMessage().getCode());
                 break;
         }
     }

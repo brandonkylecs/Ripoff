@@ -50,8 +50,8 @@ public class RipoffMessage {
 
     private final int _thismessage;
 
-    public RipoffMessage(int message) {
-        this._thismessage = message;
+    public RipoffMessage(int _message) {
+        this._thismessage = _message;
     }
 
     public int getCode() {

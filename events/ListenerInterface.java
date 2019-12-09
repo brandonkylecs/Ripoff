@@ -6,6 +6,6 @@ package events;
  */
 public interface ListenerInterface {
 
-    public void messageReceived(RipoffEvent event);
+    public void messageReceived(RipoffEvent _event);
 
 }
