@@ -2,7 +2,7 @@ package model;
 
 /**
  *
- * @author Brandon Kyle Last Updated 12/01/2019
+ * @author Brandon Kyle Last Updated 12/09/2019
  */
 import java.util.ArrayList;
 
@@ -35,20 +35,25 @@ public class ComputerOpponent extends Contender {
     //@Override
     public Card queryForCard(int _pickedCards) {
         System.out.println("The AI is being queried for its card.");
+        //This if statement triggers if the AI is being asked for more Cards than is in its Deck. Then the if else statement will trigger.
         if(_pickedCards > this.myDeck.getSize()) {
             System.out.println("The AI can not draw that many cards!");
+            //This if statement triggers if the AI has any Cards to draw, it sets pickedCards to the size of the Deck so that the AI will draw all the Cards it has left but no more.
             if(this.myDeck.getSize()!=0) {
                 _pickedCards = this.myDeck.getSize();
             }
+            //If the prior if statement was not triggered, then the AI is out of Cards, so null will be returned for it's pickedCard and the console will print a message.
             else {
                 System.out.println("The AI is out of cards.");
                 return null;
             }
         }
         ArrayList<Card> choices = this.myDeck.drawCards(_pickedCards);
+        //This has the AI pick a Card from the set of choices it was presented with.
         Card drawnCard = this.decideCard(choices);
-        myDeck.addSet(choices);
-        myDeck.shuffleCards();
+        //The remaining Cards are added back into the Deck and it is reshuffled.
+        this.myDeck.addSet(choices);
+        this.myDeck.shuffleCards();
         return drawnCard;
     }
 
@@ -56,7 +61,7 @@ public class ComputerOpponent extends Contender {
      * This method sets the initial amount of advantage points that the AI opponent will have. It compares the power of the AI's deck and the player's deck.
      * This will help decide how aggressive the AI will be at the start of the match.
      *
-     * @param _enemyDeck
+     * @param _enemyUser
      */
     public void compareInitialPower(Contender _enemyUser) {
         Deck enemyDeck = _enemyUser.getDeck();

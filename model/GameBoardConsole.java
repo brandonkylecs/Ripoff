@@ -9,8 +9,9 @@ import model.ComputerOpponent;
 
 /**
  *
- * @author Brandon Kyle Last Updated: 11/25/2019
+ * @author Brandon Kyle Last Updated: 12/09/2019
  */
+import events.RipoffMessage;
 import java.util.Scanner;
 public class GameBoardConsole {
 
@@ -28,25 +29,29 @@ public class GameBoardConsole {
         System.out.println("Welcome to the game.");
         playerOne.setDeck(difficultySelectHuman());
         playerTwo.setDeck(difficultySelectAI());
+        playerTwo.compareInitialPower(playerOne);
+        //There will be a loop until the AI or the Player reaches three wins or there is a draw.
         while(oneWins < 3 && twoWins < 3 && !draw) {
-            String result = roundResult(playerOne, playerTwo, _numDrawn);
+            int result = roundResult(playerOne, playerTwo, _numDrawn);
             switch (result) {
-                case "FIRST CARD":
+                case RipoffMessage.PLAYER_WON_ROUND:
                     oneWins = oneWins + 1;
                     System.out.println("You win this round. You have score " + oneWins + ". Bob has score " + twoWins + ".");
                     break;
-                case "SECOND CARD":
+                case RipoffMessage.AI_WON_ROUND:
                     twoWins = twoWins + 1;
                     System.out.println("You lose this round. You have score " + oneWins + ". Bob has score " + twoWins + ".");
                     break;
-                case "DRAW":
+                case RipoffMessage.DRAW_ROUND:
                     System.out.println("The cards had the same power, therefore no points are awarded. You have score " + oneWins + ". Bob has score " + twoWins + ".");
                     break;
             }
+            //This checks if there is a draw at the end of the loop because if the loop runs again in a draw state, it could repeat forever.
             if(oneWins < 3 && twoWins < 3) {
                 draw = drawChecker(playerOne, playerTwo);
             }
         }
+        //The winner is printed to the console.
         if(oneWins == 3) {
             System.out.println("You won!");
         }
@@ -63,14 +68,13 @@ public class GameBoardConsole {
      * @param _numDrawn
      * @return
      */
-    private String roundResult(Contender _human, ComputerOpponent _computer, int _numDrawn) {
+    private int roundResult(Contender _human, ComputerOpponent _computer, int _numDrawn) {
         System.out.println("You currently have the cards: \n" + _human.getDeck());
         System.out.println("Drawing cards...");
         Card oneCard = this.askForCard(_human, _numDrawn);
         System.out.println("The opponent is drawing their card...");
         Card twoCard = _computer.queryForCard(_numDrawn);
-        return "NOT USING THIS";
-        //return oneCard.comparePower(twoCard);
+        return oneCard.comparePower(twoCard);
     }
 
     /**
