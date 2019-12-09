@@ -3,6 +3,7 @@
  */
 package gui;
 
+import api.APITranslator;
 import events.RipoffEvent;
 import events.RipoffMessage;
 import games.DBTranslator;
@@ -249,9 +250,12 @@ public final class RipoffGUI extends RipoffBase {
         Label lblInfo = new Label("Thanks for visiting the Ripoff market!\n"
                 + "We only charge 50% extra convinience fee!  Don't know what that is?\n"
                 + "Ask your parents, since you're probably 14!");
+        APITranslator api = new APITranslator();
+        Label balance = new Label("\n" + "Balance: $" + api.getBal());
         Button btnExit = this.addButton("Main Menu", new RipoffMessage(RipoffMessage.EXIT_PANEL));
         VBox vbox = this.addVBox("\"Totally not a Ripoff\" Market!");
         vbox.getChildren().add(lblInfo);
+        vbox.getChildren().add(balance);
         vbox.getChildren().add(btnExit);
         Scene scene = new Scene(vbox, 500, 350);
         return scene;
